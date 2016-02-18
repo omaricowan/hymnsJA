@@ -1,7 +1,7 @@
 <ion-view view-title="All Songs">
   <ion-content class="padding">
 		<ion-list>
-			  <ion-item ng-repeat="song in songs" > 
+			  <ion-item ng-repeat="song in songs" href="#/tab/songs/{{song.id}}"> 
 				<h2>
 					<i class="icon ion-music-note"></i>
 					{{song.song_name}}			  

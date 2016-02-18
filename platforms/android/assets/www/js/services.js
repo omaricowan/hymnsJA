@@ -63,6 +63,7 @@ angular.module('starter.services', [])
 				  songs.push({   
 					id: res.rows.item(i).ID,
                     song_name: res.rows.item(i).SongTitle,
+					song_detail: res.rows.item(i).Lyrics,
                     year: res.rows.item(i).Year
                     });
 
@@ -82,7 +83,7 @@ angular.module('starter.services', [])
       songs.splice(songs.indexOf(song), 1);
     },
     get: function(songId) {
-      for (var i = 0; i < chats.length; i++) {
+      for (var i = 0; i < songs.length; i++) {
         if (songs[i].id === parseInt(songId)) {
           return songs[i];
         }
