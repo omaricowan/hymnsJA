@@ -5,9 +5,11 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
+var db = null;
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','ngCordova'])
 
-.run(function($ionicPlatform,$cordovaSQLite,$rootScope) {
+
+.run(function($ionicPlatform,$cordovaSQLite) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -22,30 +24,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
     }
   });
 
-      db =$cordovaSQLite.openDB("sing.db");
-		//window.sqlitePlugin.echoTest("worked", "failed");
-	
+		//Loads existing database
 		window.plugins.sqlDB.copy("sing.db", function() {
             db = $cordovaSQLite.openDB("sing.db");
         }, function(error) {
             console.error("db already copied: " + error);
 			 db = $cordovaSQLite.openDB("sing.db");
-        });
-		
-		
-		 $cordovaSQLite.execute(db, 'SELECT year FROM songlist;')
-        .then(
-            function(result) {                
-                 alert("ran");
-                if (result.rows.length > 0) {
-                     alert("got result");              
-                }
-            },
-            function(error) {
-                  alert("no result");
-                 console.log("Error Code = "+JSON.stringify(error));         
-            }
-        );
+        });		
+		db = $cordovaSQLite.openDB("sing.db");
+	
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -71,6 +58,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
       'tab-dash': {
         templateUrl: 'templates/tab-dash.html',
         controller: 'DashCtrl'
+		
       }
     }
   })

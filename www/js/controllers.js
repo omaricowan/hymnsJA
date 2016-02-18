@@ -1,32 +1,26 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope) {
-	
-	    //Load database
-   // window.plugins.sqlDB.copy("sing", 1, copysuccess,copyerror); 
- /*      db = $cordovaSQLite.openDB("sing.db");
-   // Execute SELECT statement to load message from database.
-    $cordovaSQLite.execute(db, 'SELECT year FROM songlist;')
-        .then(
-            function(result) {                
-                 alert("ran");
-                if (result.rows.length > 0) {
-                     alert("got result");
-                    //$scope.song = result.rows.item(0).message;               
-                   // $scope.statusMessage = "Message loaded successful, cheers!";
-                }
-            },
-            function(error) {
-                  alert("no result");
-                 console.log("Error Code = "+JSON.stringify(error));
-               $scope.tasks = [
-                    { title: 'Collect coins' },
-                    { title: 'Eat mushrooms' },
-                    { title: 'Get high enough to grab the flag' },
-                    { title: 'Find the Princess' }
-                  ];                
-            }
-        ); */
+.controller('DashCtrl', function($scope, $cordovaSQLite) {
+	$scope.songs = [];
+	    //Load database 		
+		var query = "SELECT * FROM SongList";		 
+		$cordovaSQLite.execute(db, query, []).then(function(res) {
+        if(res.rows.length > 0) {
+             console.log("SELECTED -> " + res.rows.item(0).ID + " " + res.rows.item(0).SongTitle);
+             for (var i=0; i<res.rows.length; i++) {
+
+                $scope.songs.push({                 
+                    song_name: res.rows.item(i).SongTitle,
+                    year: res.rows.item(i).Year
+                    });
+
+             }
+        } else {
+            console.log("No results found");
+        }
+    }, function (err) {
+        console.error("error=>"+err);
+    });
 	
 	
 })
