@@ -1,28 +1,7 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope, $cordovaSQLite) {
-	$scope.songs = [];
-	    //Load database 		
-		var query = "SELECT * FROM SongList";		 
-		$cordovaSQLite.execute(db, query, []).then(function(res) {
-        if(res.rows.length > 0) {
-             console.log("SELECTED -> " + res.rows.item(0).ID + " " + res.rows.item(0).SongTitle);
-             for (var i=0; i<res.rows.length; i++) {
-
-                $scope.songs.push({                 
-                    song_name: res.rows.item(i).SongTitle,
-                    year: res.rows.item(i).Year
-                    });
-
-             }
-        } else {
-            console.log("No results found");
-        }
-    }, function (err) {
-        console.error("error=>"+err);
-    });
-	
-	
+.controller('DashCtrl', function($scope,Songs) {
+		$scope.songs = Songs.all();	
 })
 
 .controller('ChatsCtrl', function($scope, Chats) {
