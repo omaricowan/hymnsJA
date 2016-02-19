@@ -6,7 +6,7 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 var db = null;
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','ngCordova'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','ngCordova','jett.ionic.filter.bar'])
 
 
 .run(function($ionicPlatform,$cordovaSQLite) {
@@ -35,7 +35,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
 	
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider,$ionicFilterBarConfigProvider) {
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
