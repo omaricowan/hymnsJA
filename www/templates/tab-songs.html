@@ -1,4 +1,5 @@
 <ion-view view-title="All Songs">
+
    <ion-nav-buttons side="secondary">
 			<button class="button button-icon icon ion-ios-search-strong" ng-click="showFilterBar()">
 			</button>
@@ -7,6 +8,7 @@
 		
 	    <ion-refresher pulling-icon="ion-arrow-down-b" on-refresh="refreshItems()">
 		</ion-refresher>
+      
 
 		<ion-list>
 			  <ion-item ng-repeat="song in songs" href="#/tab/songs/{{song.id}}"> 
@@ -16,11 +18,11 @@
 				</h2>
 			  </ion-item>
 		</ion-list>
+
 		
 		<div ng-if="songs !== undefined && !songs.length" class="no-results">
 			<p>No Results</p>
 		</div>
-	
-	
+
   </ion-content>
 </ion-view>
