@@ -40,15 +40,13 @@ angular.module('starter.controllers', [])
   $scope.song = Songs.get($stateParams.songId);
 })
 
-.controller('ChatsCtrl', function($scope, Chats) {
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
-  };
+.controller('ChatsCtrl', function($scope, Tags) {
+  $scope.tags = Tags.all();
+ 
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
+.controller('ChatDetailCtrl', function($scope, $stateParams, Tags) {
+  $scope.tag = Tags.get($stateParams.tagId);
 })
 
 .controller('AccountCtrl', function($scope,Favs) {	
