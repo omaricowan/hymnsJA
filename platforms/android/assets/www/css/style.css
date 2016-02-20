@@ -2,3 +2,30 @@
 @import
   "lib/ionic/scss/ionic",
   "lib/ionic-filter-bar/scss/ionic.filter.bar";
+   
+.cat-card {
+    float: left;
+    width: 45%;
+    background: white;
+    margin-right: 6px;
+    margin-left: 10px;
+	    box-shadow: 2px 2px 14px grey;
+}
+
+.cat-container{
+	
+}
+
+.cat-card-name{
+   
+    margin-right: 3px;   
+    float: right;
+    font-weight: bolder;
+}
+
+.cat-card-count{    
+    margin-left: 51%;
+    margin-right: 3px;
+    margin-bottom: 2px;
+    float: right;
+}

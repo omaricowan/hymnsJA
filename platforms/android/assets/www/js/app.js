@@ -72,22 +72,22 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
 	  }
     })
 
-  .state('tab.chats', {
-      url: '/chats',
+  .state('tab.categ', {
+      url: '/categ',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
+        'tab-categ': {
+          templateUrl: 'templates/tab-categ.html',
+          controller: 'CategCtrl'
         }
       }
     })
 	
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
+    .state('tab.categ-detail', {
+      url: '/categ/:categId',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
+        'tab-categ': {
+          templateUrl: 'templates/categ-detail.html',
+          controller: 'CategDetailCtrl'
         }
       }
     })

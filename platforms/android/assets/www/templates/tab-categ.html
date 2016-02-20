@@ -1,0 +1,32 @@
+<ion-view view-title="Categories">
+  <ion-content>
+
+	<div class="cat-container">
+		<div  ng-repeat="tag in tags">
+		   <div ng-if="$index%2==0" class="row">
+			  <div class="col">
+					 <div class="item cat-card" >
+						<div>						 
+							<small>
+							   <ng-letter-avatar height= "153px" width="153px"  charCount= "6" data="{{tags[$index].tag_name}}"></ng-letter-avatar>
+							</small> 					
+						</div>
+						<div class="cat-card-name">{{tags[$index].tag_name}}</div>
+                        <div class="cat-card-count">songs 10</div>
+					</div>
+					<div class="item cat-card" >
+						<div>					 
+							<small>
+							   <ng-letter-avatar  height= "153px" width="153px"  charCount= "6" data="{{tags[$index+1].tag_name}}"></ng-letter-avatar>
+							</small> 					
+                        </div>	
+						<div class="cat-card-name">{{tags[$index+1].tag_name}}</div>
+                        <div class="cat-card-count">songs 55</div>
+					</div>
+			  </div>
+		   </div>
+		</div>
+	</div>
+	
+  </ion-content>
+</ion-view>

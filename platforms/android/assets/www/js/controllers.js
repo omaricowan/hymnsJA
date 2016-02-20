@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('SongsCtrl', function($scope,Songs,$ionicFilterBar) {
+.controller('SongsCtrl', function ($scope, Songs, $ionicFilterBar) {
 
 		$scope.songs = Songs.all();	
     
@@ -40,12 +40,13 @@ angular.module('starter.controllers', [])
   $scope.song = Songs.get($stateParams.songId);
 })
 
-.controller('ChatsCtrl', function($scope, Tags) {
+.controller('CategCtrl', function($scope, Tags) {
   $scope.tags = Tags.all();
+    
  
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Tags) {
+.controller('CategDetailCtrl', function($scope, $stateParams, Tags) {
   $scope.tag = Tags.get($stateParams.tagId);
 })
 

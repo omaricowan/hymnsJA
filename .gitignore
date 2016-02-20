@@ -52,3 +52,6 @@ www/lib/ionic-filter-bar/dist/ionic.filter.bar.css
 platforms/android/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin
 platforms/android/.gradle/2.2.1/taskArtifacts/fileHashes.bin
 platforms/android/.gradle/2.2.1/taskArtifacts/cache.properties.lock
+*.lock
+platforms/android/.gradle/2.2.1/taskArtifacts/fileHashes.bin
+platforms/android/assets/www/css/style.css
