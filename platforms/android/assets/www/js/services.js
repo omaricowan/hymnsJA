@@ -49,6 +49,50 @@ angular.module('starter.services', [])
   };
 })
 
+.factory('Favs', function($cordovaSQLite,$parse) {
+  // Might use a resource here that returns a JSON array
+	var favs;
+	var songlength =[];
+	favs = [];	
+		var query = "SELECT * FROM my_favs";		 
+		$cordovaSQLite.execute(db, query, []).then(function(res) {
+        if(res.rows.length > 0) {
+             console.log("SELECTED -> " + res.rows.item(0).ID + " " + res.rows.item(0).songs);
+             for (var i=0; i<res.rows.length; i++) {
+
+				  favs.push({   
+					id: res.rows.item(i).ID,
+                    list_name: res.rows.item(i).list_name,
+					song_list: res.rows.item(i).songs.split(','),
+					song_count:	res.rows.item(i).songs.split(',').length			
+                    });
+             }
+        } else {
+            console.log("No results found");
+        }
+    }, function (err) {
+        console.error("error=>"+err);
+    });
+ 
+
+  return {
+    all: function() {
+      return favs;
+    },
+    remove: function(fav) {
+      favs.splice(favs.indexOf(fav), 1);
+    },
+    get: function(favId) {
+      for (var i = 0; i < favs.length; i++) {
+        if (favs[i].id === parseInt(favId)) {
+          return favs[i];
+        }
+      }
+      return null;
+    }
+  };
+})
+
 
 .factory('Songs', function($cordovaSQLite) {
   // Might use a resource here that returns a JSON array
@@ -64,7 +108,8 @@ angular.module('starter.services', [])
 					id: res.rows.item(i).ID,
                     song_name: res.rows.item(i).SongTitle,
 					song_detail: res.rows.item(i).Lyrics,
-                    year: res.rows.item(i).Year
+                    year: res.rows.item(i).Year,
+					first_line:	res.rows.item(i).FirstLine 
                     });
 
              }

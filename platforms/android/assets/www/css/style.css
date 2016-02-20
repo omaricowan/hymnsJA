@@ -1,1 +1,4 @@
 /* Empty. Add your own CSS if you like */
+@import
+  "lib/ionic/scss/ionic",
+  "lib/ionic-filter-bar/scss/ionic.filter.bar";
