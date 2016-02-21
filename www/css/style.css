@@ -16,8 +16,7 @@
 	
 }
 
-.cat-card-name{
-   
+.cat-card-name{   
     margin-right: 3px;   
     float: right;
     font-weight: bolder;
@@ -28,4 +27,11 @@
     margin-right: 3px;
     margin-bottom: 2px;
     float: right;
+}
+
+.song-detial-footer{   
+    margin-right: 2px;   
+    float: left;
+    font-weight: bolder;
+    width: 100%;
 }

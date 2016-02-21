@@ -48,7 +48,7 @@ angular.module('starter.services', [])
   // Might use a resource here that returns a JSON array
 	
 	tags = [];	
-		var query = "SELECT * FROM tags";		 
+		var query = "SELECT * FROM tags order by Tag_name";		 
 		$cordovaSQLite.execute(db, query, []).then(function(res) {
         if(res.rows.length > 0) {          
              for (var i=0; i<res.rows.length; i++) {
@@ -99,6 +99,9 @@ angular.module('starter.services', [])
                     song_name: res.rows.item(i).SongTitle,
 					song_detail: res.rows.item(i).Lyrics,
                     year: res.rows.item(i).Year,
+                    tags: res.rows.item(i).Tags,
+                    author: res.rows.item(i).Songwriter,
+                    copyright: res.rows.item(i).Copyright,
 					first_line:	res.rows.item(i).FirstLine 
                     });
 

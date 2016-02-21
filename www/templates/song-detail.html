@@ -6,6 +6,11 @@
 -->
 <ion-view view-title="{{song.song_name}}">
   <ion-content class="padding">  
-	  <div ng-bind-html="song.song_detail"></div>
+	  <div ng-bind-html="song.song_detail" class="Song-detail"></div>
+      <div>
+         <div class="song-detial-footer">Author: {{song.author}}</div>        
+         <div class="song-detial-footer">{{song.copyright}}</div> 
+         <div class="song-detial-footer">{{song.year}}</div> 
+      </div>
   </ion-content>
 </ion-view>
