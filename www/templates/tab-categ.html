@@ -6,19 +6,23 @@
 		   <div ng-if="$index%2==0" class="row">
 			  <div class="col">
 					 <div class="cat-card" >
-						<div>						 
-							<small>
-							   <ng-letter-avatar height= "153px" width="153px"  charCount= "6" data="{{tags[$index].tag_name}}"></ng-letter-avatar>
-							</small> 					
-						</div>
+						<div class="cat-card-image-holder">	
+                            <p>
+                                <big>
+							      <ng-letter-avatar class="categ-img" height= "153px"  fontSize="100" charCount= "1" data="{{tags[$index].tag_name}}"></ng-letter-avatar>
+                                </big>
+                            </p>
+                         </div>
 						<div class="cat-card-name">{{tags[$index].tag_name}}</div>
                         <div class="cat-card-count">songs 10</div>
 					</div>
 					<div class="cat-card" >
-						<div>					 
-							<small>
-							   <ng-letter-avatar  height= "153px" width="153px"  charCount= "6" data="{{tags[$index+1].tag_name}}"></ng-letter-avatar>
-							</small> 					
+						<div class="cat-card-image-holder">	
+                             <p>
+                                 <big>
+                                     <ng-letter-avatar  class="categ-img" height= "153px"  fontSize="100" charCount= "1" data="{{tags[$index+1].tag_name}}"></ng-letter-avatar>
+                                 </big>
+                            </p>
                         </div>	
 						<div class="cat-card-name">{{tags[$index+1].tag_name}}</div>
                         <div class="cat-card-count">songs 55</div>
