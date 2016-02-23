@@ -2,7 +2,7 @@
   <ion-content class="padding">  
 	  <div ng-bind-html="song.song_detail" class="Song-detail"></div>
       <div>
-         <div  ng-if="!song.author" class="song-detial-footer">Author: {{song.author}} {{song.year}}</div>        
+         <div  ng-if="song.author" class="song-detial-footer">Author: {{song.author}} {{song.year}}</div>        
          <div class="song-detial-footer">{{song.copyright}}</div>         
       </div>
   </ion-content>

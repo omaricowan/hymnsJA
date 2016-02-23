@@ -4,6 +4,10 @@
 			</button>
   </ion-nav-buttons>
   <ion-content>
+       <ion-refresher
+            pulling-text="Pull to refresh..."
+            on-refresh="refreshItems()">
+       </ion-refresher>
 	<ul class="list">
       <ion-item ng-repeat="song in songs"> 
             <a class="song-item-title" ng-href="#/tab/songs/{{song.id}}" href="#/tab/songs/{{song.id}}"> 
@@ -12,10 +16,10 @@
                     {{song.song_name}}					
                 </h2> 
             </a>
-            <button class="fav-button" ng-if="!song.year">
+            <button ng-click="addFavSong(song)" class="fav-button" ng-if="!song.fav_flg">
                <i  class="icon ion-android-favorite-outline" ></i>   
             </button>
-            <button class="fav-button" ng-if="song.year">
+            <button ng-click="removeFavSong(song)" class="fav-button" ng-if="song.fav_flg">
                <i class="icon ion-android-favorite" ></i>    
              </button>
            <a class="song-item-fline" ng-href="#/tab/songs/{{song.id}}" href="#/tab/songs/{{song.id}}"> 

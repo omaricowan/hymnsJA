@@ -87,36 +87,25 @@ angular.module('starter.services', [])
 
 .factory('Songs', function($cordovaSQLite) {
   // Might use a resource here that returns a JSON array
-	var songs
-	songs = [];	
-		var query = "SELECT * FROM SongList";		 
-		$cordovaSQLite.execute(db, query, []).then(function(res) {
-        if(res.rows.length > 0) {           
-             for (var i=0; i<res.rows.length; i++) {
-
-				  songs.push({   
-					id: res.rows.item(i).ID,
-                    song_name: res.rows.item(i).SongTitle,
-					song_detail: res.rows.item(i).Lyrics,
-                    year: res.rows.item(i).Year,
-                    tags: res.rows.item(i).Tags,
-                    author: res.rows.item(i).Songwriter,
-                    copyright: res.rows.item(i).Copyright,
-					first_line:	res.rows.item(i).FirstLine 
-                    });
-
-             }
-        } else {
-            console.log("No results found");
-        }
-    }, function (err) {
-        console.error("error=>"+err);
-    });
-
+	
+	var songs = [];	
+    //retrives all songs from db
+    songs = retrieveSongs($cordovaSQLite);
+    
   return {
     all: function() {
       return songs;
-    },
+    },   
+    addFavSong: function(song) {
+        
+       console.log("updating:" +song.id)
+         //save flg and add song to fav list
+            saveFav($cordovaSQLite,song);        
+         //retrives updated songs from db
+            songs = retrieveSongs($cordovaSQLite);
+        
+          return songs;
+        },
     remove: function(song) {
       songs.splice(songs.indexOf(song), 1);
     },

@@ -27,12 +27,18 @@ angular.module('starter.controllers', [])
         filterBarInstance = null;
       }
 
-      $timeout(function () {
-        getItems();
+        $scope.songs = Songs.all();
         $scope.$broadcast('scroll.refreshComplete');
-      }, 1000);
+      
     };
     //
+    
+    $scope.addFavSong = function (song){
+        //saves fav flg and retrieves updates song list from db
+        var newlist = Songs.addFavSong(song); 
+        $scope.songs = newlist;
+        $scope.$broadcast('scroll.refreshComplete');
+    }
 
 })
 
