@@ -37,7 +37,6 @@ angular.module('starter.controllers', [])
         //saves fav flg and retrieves updates song list from db
         var newlist = Songs.addFavSong(song); 
         $scope.songs = newlist;
-        $scope.$broadcast('scroll.refreshComplete');
     }
 
 })

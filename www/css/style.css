@@ -1,6 +1,6 @@
 /* Empty. Add your own CSS if you like */
 @import
-  "lib/ionic/scss/ionic",
+  "lib/ionic/scss/ionic.scss",
   "lib/ionic-filter-bar/scss/ionic.filter.bar";
    
 .cat-card {

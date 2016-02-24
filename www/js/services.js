@@ -98,11 +98,13 @@ angular.module('starter.services', [])
     },   
     addFavSong: function(song) {
         
-       console.log("updating:" +song.id)
+       console.log("updating:" +song.id);
          //save flg and add song to fav list
-            saveFav($cordovaSQLite,song);        
-         //retrives updated songs from db
+            saveFav($cordovaSQLite,song);
             songs = retrieveSongs($cordovaSQLite);
+                    
+         //retrives updated songs from db
+            
         
           return songs;
         },
