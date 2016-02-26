@@ -25,13 +25,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
   });
 
 		//Loads existing database
-		window.plugins.sqlDB.copy("sing.db", function() {
-            db = $cordovaSQLite.openDB("sing.db");
+		window.plugins.sqlDB.copy("sing1.db", function() {
+            db = $cordovaSQLite.openDB("sing1.db");
         }, function(error) {
             console.error("db already copied: " + error);
-			 db = $cordovaSQLite.openDB("sing.db");
+			 db = $cordovaSQLite.openDB("sing1.db");
         });		
-		db = $cordovaSQLite.openDB("sing.db");
+		db = $cordovaSQLite.openDB("sing1.db");
 	
 })
 
@@ -100,7 +100,18 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
         controller: 'AccountCtrl'
       }
     }
-  });
+  })
+  .state('tab.fav-songs', {
+      url: '/fav-songs/:songId',
+      views: {
+        'tab-songs': {
+          templateUrl: 'templates/tab-fav-songs.html',
+          controller: 'FavSongCtrl'
+        }
+	  }
+    })
+  ;
+
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/songs');

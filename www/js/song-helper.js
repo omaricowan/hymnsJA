@@ -17,8 +17,10 @@ function retrieveSongs($cordovaSQLite){
                     fav_flg: res.rows.item(i).fav_flg,
 					first_line:	res.rows.item(i).FirstLine 
                     });
-
+                 
+                      console.log("song flg:" +res.rows.item(i).fav_flg);
              }
+           
         } else {
             console.log("No results found");
         }
@@ -53,30 +55,43 @@ function saveFav($cordovaSQLite,song){
            
 
                         /* if exist then do nothing*/
-                            console.log("saveFav-55 Rows selected :" +favs.length);
+               
 
-                            fav = favs[0];
-                            fav.song_list.push(song.id);
-                            console.log("saveFav-55 fav-list:" +fav.song_list.toString());
+                            
+                           
                         /* else */
-                            /*updates fav_flg */
-                            var query1 = "UPDATE songList SET fav_flg = 'Y' where ID = ?";
-                              $cordovaSQLite.execute(db, query1, [song.id]).then(function(res) {
-                              console.log("Rows Updated: saveFav-63 " + res.rowsAffected );       
-                            }, function (err) {
-                              console.error(err);
-                            });
-
-
-                            /* and update fav list songs 
-                            var query2 = "UPDATE my_favs SET songList = ? where ID = 1";
-                                listparam = fav.song_list.toString();
-                              $cordovaSQLite.execute(db, query2, [listparam]).then(function(res) {
+                            // add new song to fav list
+                            fav = favs[0];                     
+                            fav.song_list.push(song.id);
+                     
+                            /*updates fav_flg on song table*/
+                              var query1 = "UPDATE songList SET fav_flg = 'true' where ID = ?";
+                              $cordovaSQLite.execute(db, query1, [song.id]).then(function(res) {                                   
+                                }, function (err) {
+                                  console.error(err);
+                                });
+                     
+                             console.log(" before update fav length:"+fav.song_list.length +"fav"+fav.song_list.toString());
+                             var listparam;
+                     
+                            //removes first comma from fav song list
+                             if(fav.song_list.toString().charAt(0) == ','){
+                                // remove comma
+                                  listparam = fav.song_list.toString().substring(1);
+                                  
+                             }else{    
+                                  listparam = fav.song_list.toString();
+                             }
+                     
+                            //and update fav list songs   
+                             var query2 = "UPDATE my_favs SET songs ='"+listparam+"' where ID = ?";
+                               console.log(query2);
+                              $cordovaSQLite.execute(db, query2, [1]).then(function(res) {
                               console.log("Rows Updated: saveFav-72" + res.rowsAffected );       
-                            }, function (err) {
-                              console.error(err);
-                            });
-                     */
+                                }, function (err) {
+                                  console.error(err);
+                                });
+                     
                      
                      
                      console.log("saveFav-79 Rows selected :" +favs.length);

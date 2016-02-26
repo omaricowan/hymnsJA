@@ -36,7 +36,6 @@ angular.module('starter.controllers', [])
     $scope.addFavSong = function (song){
         //saves fav flg and retrieves updates song list from db
         var newlist = Songs.addFavSong(song); 
-        $scope.songs = newlist;
     }
 
 })

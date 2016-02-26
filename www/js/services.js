@@ -16,9 +16,14 @@ angular.module('starter.services', [])
 					song_list: res.rows.item(i).songs.split(','),
 					song_count:	res.rows.item(i).songs.split(',').length			
                     });
+                 
+            
              }
+           
+           
         } else {
             console.log("No results found");
+            
         }
     }, function (err) {
         console.error("error=>"+err);
