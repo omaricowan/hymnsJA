@@ -9,18 +9,18 @@
             on-refresh="refreshItems()">
        </ion-refresher>
 	<ul class="list">
-      <ion-item ng-repeat="song in songs"> 
-            <a class="song-item-title" ng-href="#/tab/songs/{{song.id}}" href="#/tab/songs/{{song.id}}"> 
+      <ion-item ng-repeat="song in favsongs"> 
+            <a class="song-item-title" ng-href="#/tab/songs/{{song.id}}"> 
                <h2 class="song-title">
                     <i class="icon ion-music-note"></i>
                     {{song.song_name}}					
                 </h2> 
             </a>
-            <button id="removeFav" ng-click="(song.fav_flg = 'true'); addFavSong(song);" class="fav-button" ng-show="song.fav_flg  !== 'true'">
+            <button  ng-click="(song.fav_flg = 'true'); addFavSong(song);" class="fav-button" ng-show="song.fav_flg  !== 'true'">
                <i  class="icon ion-android-favorite-outline" ></i>   
             </button>
           
-            <button id="addFav" ng-click="(song.fav_flg = 'false'); " class="fav-button" ng-show="song.fav_flg == 'true'">
+            <button ng-click="(song.fav_flg = 'false'); " class="fav-button" ng-show="song.fav_flg == 'true'">
                <i class="icon ion-android-favorite" ></i>    
              </button>
            <a class="song-item-fline" ng-href="#/tab/songs/{{song.id}}" href="#/tab/songs/{{song.id}}"> 

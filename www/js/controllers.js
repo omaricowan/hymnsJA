@@ -57,4 +57,24 @@ angular.module('starter.controllers', [])
 .controller('AccountCtrl', function($scope,Favs) {	
 	$scope.favs = Favs.all();	
 
+})
+
+.controller('FavSongCtrl', function($scope,$stateParams,Favs,Songs) {	
+   
+    var favId = $stateParams.id;
+    console.log("favid"+favId);
+    var favsongsList =  Favs.get(favId).song_list;
+     console.log("songs"+Favs.get(favId));
+     console.log("lenghth"+favsongsList.length);
+    var favsongs =[];
+    for (var i=0; i < favsongsList.length; i++) {
+                console.log("id"+favsongsList[i]);
+				  favsongs.push(
+                                        Songs.get(favsongsList[i])
+                                    );
+             }
+    
+	$scope.favsongs = favsongs;	
+
 });
+

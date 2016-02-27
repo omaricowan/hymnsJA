@@ -5,7 +5,8 @@ angular.module('starter.services', [])
 	var favs;
 	var songlength =[];
 	favs = [];	
-		var query = "SELECT * FROM my_favs";		 
+		var query = "SELECT * FROM my_favs";
+        console.log("selecting favs");
 		$cordovaSQLite.execute(db, query, []).then(function(res) {
         if(res.rows.length > 0) {            
              for (var i=0; i<res.rows.length; i++) {
@@ -38,6 +39,7 @@ angular.module('starter.services', [])
       favs.splice(favs.indexOf(fav), 1);
     },
     get: function(favId) {
+         console.log("selecting favs id"+favId);
       for (var i = 0; i < favs.length; i++) {
         if (favs[i].id === parseInt(favId)) {
           return favs[i];

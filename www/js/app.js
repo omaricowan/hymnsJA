@@ -25,13 +25,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
   });
 
 		//Loads existing database
-		window.plugins.sqlDB.copy("sing1.db", function() {
-            db = $cordovaSQLite.openDB("sing1.db");
+		window.plugins.sqlDB.copy("sing.db", function() {
+            db = $cordovaSQLite.openDB("sing.db");
         }, function(error) {
             console.error("db already copied: " + error);
-			 db = $cordovaSQLite.openDB("sing1.db");
+			 db = $cordovaSQLite.openDB("sing.db");
         });		
-		db = $cordovaSQLite.openDB("sing1.db");
+		db = $cordovaSQLite.openDB("sing.db");
 	
 })
 
@@ -62,6 +62,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
       }
     }
   })
+  
    .state('tab.song-detail', {
       url: '/songs/:songId',
       views: {
@@ -101,16 +102,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','n
       }
     }
   })
-  .state('tab.fav-songs', {
-      url: '/fav-songs/:songId',
+  
+   .state('tab.fav-songs', {
+      url: '/fav-songs/:id',
       views: {
-        'tab-songs': {
+        'tab-account': {
           templateUrl: 'templates/tab-fav-songs.html',
           controller: 'FavSongCtrl'
         }
 	  }
-    })
-  ;
+    });
 
 
   // if none of the above states are matched, use this as the fallback

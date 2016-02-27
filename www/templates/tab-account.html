@@ -1,7 +1,7 @@
 <ion-view view-title="Account">
   <ion-content>
    <ion-list>
-			  <ion-item ng-repeat="fav in favs"> 
+			  <ion-item ng-repeat="fav in favs" ng-href="#/tab/fav-songs/{{fav.id}}" > 
 				<p style="float: left; margin-right: 10px;">						 
 					<small>
 					   <ng-letter-avatar data="{{fav.list_name}}"></ng-letter-avatar>
