@@ -44,6 +44,10 @@ angular.module('starter.controllers', [])
     $scope.song = Songs.get($stateParams.songId);
 })
 
+.controller('FavSongDetailCtrl', function ($scope, $stateParams, Songs) {
+    $scope.song = Songs.get($stateParams.songId);
+})
+
 .controller('CategCtrl', function ($scope, Tags) {
     $scope.tags = Tags.all();
 
@@ -74,4 +78,19 @@ angular.module('starter.controllers', [])
 
     $scope.favsongs = favsongs;
 
+})
+
+.directive('hideTabs', function($rootScope) {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attributes) {
+            scope.$watch(attributes.hideTabs, function(value){
+                $rootScope.hideTabs = value;
+            });
+
+            scope.$on('$destroy', function() {
+                $rootScope.hideTabs = false;
+            });
+        }
+    };
 });

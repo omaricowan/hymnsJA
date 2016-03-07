@@ -77,6 +77,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
             }
         }
     })
+    
+      .state('tab.fav-song-detail', {
+        url: '/fav-songs-dets/:songId'
+        , views: {
+            'tab-favs': {
+                templateUrl: 'templates/song-detail-fav.html'
+                , controller: 'FavSongDetailCtrl'
+            }
+        }
+    })
 
     .state('tab.categ', {
         url: '/categ'
