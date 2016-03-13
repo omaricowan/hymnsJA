@@ -20,7 +20,8 @@
 		<script src="lib/ionic/js/ionic.bundle.js"></script>
 		<script src="js/ng-cordova.min.js"></script>
 		<script src="js/ngletteravatar.min.js"></script>
-        <script src="lib/ionic-filter-bar/dist/ionic.filter.bar.js"></script>		 
+        <script src="lib/ionic-filter-bar/dist/ionic.filter.bar.js"></script>	
+        <script src="js/ionic-ion-autoListDivider.js"></script>
 		 
 		<!-- your app's js -->
         
@@ -38,6 +39,7 @@
     <ion-nav-bar class="bar-stable">
       <ion-nav-back-button>
       </ion-nav-back-button>
+         <button onclick="window.plugins.socialsharing.share('Message only')">message only</button>
     </ion-nav-bar>
     <!--
       The views will be rendered in the <ion-nav-view> directive below

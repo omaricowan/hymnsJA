@@ -1,9 +1,9 @@
-<ion-view cache-view="false" view-title="{{song.song_name}}" hide-tabs='true'>
+<ion-view view-title="{{songFav.song_name}}" hide-tabs='true'>
   <ion-content class="padding">  
-	  <div ng-bind-html="song.song_detail" class="Song-detail"></div>
+	  <div ng-bind-html="songFav.song_detail" class="Song-detail"></div>
       <div>
-         <div  ng-if="song.author" class="song-detial-footer">Author: {{song.author}} {{song.year}}</div>        
-         <div class="song-detial-footer">{{song.copyright}}</div>         
+         <div  ng-if="songFav.author" class="song-detial-footer">Author: {{songFav.author}} {{songFav.year}}</div>        
+         <div class="song-detial-footer">{{songFav.copyright}}</div>         
       </div>
   </ion-content>
 </ion-view>

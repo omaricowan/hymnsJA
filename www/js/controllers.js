@@ -45,7 +45,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('FavSongDetailCtrl', function ($scope, $stateParams, Songs) {
-    $scope.song = Songs.get($stateParams.songId);
+    $scope.songFav = Songs.get($stateParams.songId);
 })
 
 .controller('CategCtrl', function ($scope, Tags) {

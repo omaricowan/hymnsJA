@@ -6,7 +6,7 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 var db = null;
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngCordova', 'jett.ionic.filter.bar', 'ngLetterAvatar'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngCordova', 'jett.ionic.filter.bar', 'ngLetterAvatar','ionic.ion.autoListDivider'])
 
 
 .run(function ($ionicPlatform, $cordovaSQLite) {
