@@ -18,7 +18,7 @@ function retrieveSongs($cordovaSQLite) {
                     , first_line: res.rows.item(i).FirstLine
                 });
 
-                console.log("song flg:" + res.rows.item(i).fav_flg);
+               
             }
 
         } else {
@@ -30,7 +30,6 @@ function retrieveSongs($cordovaSQLite) {
     console.log("getting songs from db done");
     return songs;
 }
-
 
 function retrieveFavs($cordovaSQLite) {
     var favs;
@@ -46,11 +45,8 @@ function retrieveFavs($cordovaSQLite) {
                     , list_name: res.rows.item(i).list_name
                     , song_list: res.rows.item(i).songs.split(',')
                     , song_count: res.rows.item(i).songs.split(',').length
-                });
-
-
+                });        
             }
-
 
         } else {
             console.log("No results found");
@@ -60,7 +56,7 @@ function retrieveFavs($cordovaSQLite) {
         console.error("error=>" + err);
     });
 
-
+   
     return favs;
 }
 

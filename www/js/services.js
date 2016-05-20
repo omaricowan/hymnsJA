@@ -87,12 +87,7 @@ angular.module('starter.services', [])
             console.log("updating:" + song.id);
             //save flg and add song to fav list
             saveFav($cordovaSQLite, song);
-            songs = retrieveSongs($cordovaSQLite);
-
-            //retrives updated songs from db
-
-
-            return songs;
+ 
         }
         , remove: function (song) {
             songs.splice(songs.indexOf(song), 1);
