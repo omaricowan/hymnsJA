@@ -20,7 +20,7 @@
                <i  class="icon ion-android-favorite-outline" ></i>   
             </button>
           
-            <button id="addFav" ng-click="(song.fav_flg = 'false'); " class="fav-button" ng-show="song.fav_flg == 'true'">
+            <button id="addFav" ng-click="removeFavSong(song); (song.fav_flg = 'false'); " class="fav-button" ng-show="song.fav_flg == 'true'">
                <i class="icon ion-android-favorite" ></i>    
              </button>
            <a class="song-item-fline" ng-href="#/tab/songs/{{song.id}}" href="#/tab/songs/{{song.id}}"> 

@@ -2,25 +2,25 @@ angular.module('starter.services', [])
 
 .factory('Favs', function ($cordovaSQLite, $parse) {
     // Might use a resource here that returns a JSON array
-    var favs;
+    var favs = [];
     favs = retrieveFavs($cordovaSQLite);
 
 
     return {
-        all: function () {
+        reload: function () {
+            favs = retrieveFavs($cordovaSQLite);
             return favs;
         }
         , remove: function (fav) {
             favs.splice(favs.indexOf(fav), 1);
         }
-        , reload: function (fav) {
-             favs = retrieveFavs($cordovaSQLite);
+        , load: function () {            
             return favs;
         }
-        , get: function (favId) {
-            console.log("selecting favs id" + favId);
+        , get: function (favId) { 
             for (var i = 0; i < favs.length; i++) {
                 if (favs[i].id === parseInt(favId)) {
+                    console.log("Match Fav ID");
                     return favs[i];
                 }
             }
@@ -81,6 +81,13 @@ angular.module('starter.services', [])
     return {
         all: function () {
             return songs;
+        }
+        , removeFavSong: function (song) {
+
+            console.log("Removing:" + song.id);
+            //save flg and add song to fav list
+            removeFav($cordovaSQLite, song);
+ 
         }
         , addFavSong: function (song) {
 

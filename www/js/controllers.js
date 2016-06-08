@@ -1,9 +1,9 @@
 angular.module('starter.controllers', [])
 
-.controller('SongsCtrl', function ($scope, Songs, $ionicFilterBar) {
+.controller('SongsCtrl', function ($scope,Favs, Songs, $ionicFilterBar) {
 
     $scope.songs = Songs.all();
-
+     Favs.load();
     //
 
     var filterBarInstance;
@@ -36,6 +36,13 @@ angular.module('starter.controllers', [])
     $scope.addFavSong = function (song) {
         //saves fav flg and retrieves updates song list from db
         Songs.addFavSong(song);
+            Favs.reload();
+    }
+    
+      $scope.removeFavSong = function (song) {
+        //removes fav flg and retrieves updates song list from db
+        Songs.removeFavSong(song);
+            Favs.reload();
     }
 
 })
@@ -58,27 +65,25 @@ angular.module('starter.controllers', [])
     $scope.tag = Tags.get($stateParams.tagId);
 })
 
-.controller('FavCtrl', function ($scope, Favs) {
-    $scope.$on('$ionicView.beforeEnter', function () {
-        $scope.favs = Favs.reload();
+
+.controller('FavSongCtrl', function ($scope, Favs, Songs) {
+     $scope.$on('$ionicView.beforeEnter', function () {  
+      
+        var favId = 1;
+        var favsongsList = Favs.get(favId).song_list;       
+        var favsongs = [];
+         console.log("fav song flag" +favsongsList);
+        for (var i = 0; i < favsongsList.length; i++) {
+            favsongs.push(
+                Songs.get(favsongsList[i])
+            );
+            console.log("fav song flag" +Songs.get(favsongsList[i]).fav_flg);
+        }
+
+        $scope.favsongs = favsongs;
     });
-    //$scope.favs = Favs.all();	
-
-})
-
-.controller('FavSongCtrl', function ($scope, $stateParams, Favs, Songs) {
-    var favId = $stateParams.id;
-    var favsongsList = Favs.get(favId).song_list;
-    var favsongs = [];
-    for (var i = 0; i < favsongsList.length; i++) {
-        favsongs.push(
-            Songs.get(favsongsList[i])
-        );
-        console.log("fav song flag" +Songs.get(favsongsList[i]).fav_flg);
-    }
-
-    $scope.favsongs = favsongs;
-
+    
+       
 })
 
 .directive('hideTabs', function($rootScope) {

@@ -113,20 +113,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         , views: {
             'tab-favs': {
                 templateUrl: 'templates/tab-favs.html'
-                , controller: 'FavCtrl'
-            }
-        }
-    })
-
-    .state('tab.fav-songs', {
-        url: '/fav-songs/:id'
-        , views: {
-            'tab-favs': {
-                templateUrl: 'templates/tab-fav-songs.html'
                 , controller: 'FavSongCtrl'
             }
         }
-    });
+    })
 
 
     // if none of the above states are matched, use this as the fallback
