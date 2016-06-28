@@ -108,4 +108,21 @@ angular.module('starter.services', [])
             return null;
         }
     };
+})
+
+.factory('Settings', function ($cordovaSQLite, $parse) {
+    // Might use a resource here that returns a JSON array
+    var setting = [];
+    return {
+        all: function (){
+          setting = retrieveSettings($cordovaSQLite);
+          return setting;
+        }
+        ,get: function () {
+            for (var i = 0; i < setting.length; i++) {             
+                    return setting[i]; 
+            }
+            return null;
+        }
+    };
 });

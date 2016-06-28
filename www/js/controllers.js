@@ -1,8 +1,9 @@
 angular.module('starter.controllers', [])
 
-.controller('SongsCtrl', function ($scope,Favs, Songs, $ionicFilterBar) {
+.controller('SongsCtrl', function ($scope,Favs, Songs,Settings, $ionicActionSheet, $ionicFilterBar) {
 
     $scope.songs = Songs.all();
+    Settings.all();
      Favs.load();
     //
 
@@ -18,6 +19,26 @@ angular.module('starter.controllers', [])
                     console.log(filterText);
                 }
             }
+        });
+    };
+    
+     // Triggered on a button click, or some other target
+    $scope.showMenu = function() {
+
+   // Show the action sheet
+   var hideSheet = $ionicActionSheet.show({
+     buttons: [
+       { text: 'Change Song Font Size' },
+       { text: 'About' }
+     ],
+     titleText: 'Settings',
+     cancelText: 'Cancel',
+     cancel: function() {
+          // add cancel code..
+        },
+     buttonClicked: function(index) {
+       return true;
+     }
         });
     };
 
@@ -47,8 +68,10 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('SongDetailCtrl', function ($scope, $stateParams, Songs) {
+.controller('SongDetailCtrl', function ($scope, $stateParams, Songs, Settings) {
     $scope.song = Songs.get($stateParams.songId);
+    var settings = Settings.get();
+    $scope.settings = settings; 
 })
 
 .controller('FavSongDetailCtrl', function ($scope, $stateParams, Songs) {

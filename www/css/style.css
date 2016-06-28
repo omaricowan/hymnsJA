@@ -86,3 +86,7 @@
     width: 88%;
     padding: 2px 0px 0px 15px !important;
 }
+.Song-detail,song-detial-footer{
+    /*--font-size: 32px;--*/
+    line-height: initial; !important;
+}

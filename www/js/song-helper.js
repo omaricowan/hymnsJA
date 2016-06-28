@@ -1,3 +1,29 @@
+function retrieveSettings($cordovaSQLite) {
+    var setting = [];
+    var query = "SELECT * FROM setting";
+    $cordovaSQLite.execute(db, query, []).then(function (res) {
+        console.log("getting setting from db");
+        if (res.rows.length > 0) {
+            for (var i = 0; i < res.rows.length; i++) {
+
+                setting.push({
+                      fontSize: res.rows.item(i).font_size
+                    , version: res.rows.item(i).version                
+                });
+
+             console.log("settings"+setting);
+            }
+
+        } else {
+            console.log("No results found");
+        }
+    }, function (err) {
+        console.error("error=>" + err);
+    });
+    console.log("getting songs from db done");
+    return setting;
+}
+
 function retrieveSongs($cordovaSQLite) {
     var songs = [];
     var query = "SELECT * FROM SongList";
