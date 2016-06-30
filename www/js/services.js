@@ -115,14 +115,17 @@ angular.module('starter.services', [])
     var setting = [];
     return {
         all: function (){
+          setting = [];
           setting = retrieveSettings($cordovaSQLite);
-          return setting;
         }
         ,get: function () {
             for (var i = 0; i < setting.length; i++) {             
                     return setting[i]; 
             }
             return null;
+        },saveSettings: function(fontsizeVal){
+            
+            saveSettings($cordovaSQLite,fontsizeVal);
         }
     };
 });

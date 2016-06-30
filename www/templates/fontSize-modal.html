@@ -1,0 +1,15 @@
+
+  <ion-modal-view>
+    <ion-header-bar>
+      <h1 class="title">Change Font Size</h1>
+    </ion-header-bar>
+    <ion-content>
+       <ion-list>
+          <ion-radio ng-model="fontsizeVal" ng-value="12">Small</ion-radio>
+          <ion-radio ng-model="fontsizeVal" ng-value="18">Medium</ion-radio>
+          <ion-radio ng-model="fontsizeVal" ng-value="25">Large</ion-radio>
+        </ion-list>
+        <button class = "button icon icon-left ion-ios-close-outline"
+            ng-click = "closeModal()">Save</button>
+    </ion-content>
+  </ion-modal-view>

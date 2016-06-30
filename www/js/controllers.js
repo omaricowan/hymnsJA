@@ -1,12 +1,12 @@
 angular.module('starter.controllers', [])
 
-.controller('SongsCtrl', function ($scope,Favs, Songs,Settings, $ionicActionSheet, $ionicFilterBar) {
+.controller('SongsCtrl', function ($scope,Favs, Songs,Settings, $ionicActionSheet,$ionicModal,$ionicPopup, $ionicFilterBar) {
 
     $scope.songs = Songs.all();
     Settings.all();
      Favs.load();
     //
-
+//-----------------------------------Search bar implementation-----------------------------------//
     var filterBarInstance;
 
     $scope.showFilterBar = function () {
@@ -22,6 +22,56 @@ angular.module('starter.controllers', [])
         });
     };
     
+//-----------------------------------Search bar implementation-----------------------------------//
+$scope.showAlert = function() {
+   var alertPopup = $ionicPopup.alert({
+     title: 'Hymns JA',
+     template: 'Songs for AY / Praise and Worship'
+   });
+ 
+   alertPopup.then(function(res) {
+     console.log('Thank you for advice.');
+   });
+ };
+    
+//-----------------------------------Fnt Size Modal implementation-----------------------------------//
+    $scope.fontsizeVal = "12";
+    $ionicModal.fromTemplateUrl('./templates/fontSize-modal.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+   }).then(function(modal) {
+      $scope.modal = modal;
+      
+   });
+	
+   $scope.openModal = function() {
+      $scope.modal.show();
+   };
+	
+   $scope.closeModal = function() {
+        //saves fontSize value
+      Settings.saveSettings($scope.fontsizeVal);
+      Settings.all();
+      $scope.modal.hide();
+   };
+	
+   //Cleanup the modal when we're done with it!
+   $scope.$on('$destroy', function() {
+      
+      $scope.modal.remove();
+   });
+	
+   // Execute action on hide modal
+   $scope.$on('modal.hidden', function() {
+      // Execute action
+   });
+	
+   // Execute action on remove modal
+   $scope.$on('modal.removed', function() {
+      // Execute action
+   });
+    
+//-----------------------------------Setting menu implementation-----------------------------------//
      // Triggered on a button click, or some other target
     $scope.showMenu = function() {
 
@@ -37,11 +87,19 @@ angular.module('starter.controllers', [])
           // add cancel code..
         },
      buttonClicked: function(index) {
+         if(index==0){
+             $scope.openModal();     
+         }
+       
+         if(index==1){
+         
+             $scope.showAlert();
+          }
        return true;
      }
         });
     };
-
+//-----------------------------------Search refresh implementation-----------------------------------//
     $scope.refreshItems = function () {
         if (filterBarInstance) {
             filterBarInstance();
@@ -53,7 +111,9 @@ angular.module('starter.controllers', [])
 
     };
     //
+    
 
+//-----------------------------------Song list implementation-----------------------------------//
     $scope.addFavSong = function (song) {
         //saves fav flg and retrieves updates song list from db
         Songs.addFavSong(song);
@@ -108,6 +168,9 @@ angular.module('starter.controllers', [])
     
        
 })
+
+
+
 
 .directive('hideTabs', function($rootScope) {
     return {
