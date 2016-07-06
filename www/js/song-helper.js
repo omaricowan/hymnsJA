@@ -1,5 +1,3 @@
-
-
 function retrieveSongs($cordovaSQLite) {
     var songs = [];
     var query = "SELECT * FROM SongList";
@@ -20,7 +18,7 @@ function retrieveSongs($cordovaSQLite) {
                     , first_line: res.rows.item(i).FirstLine
                 });
 
-               
+
             }
 
         } else {
@@ -47,9 +45,9 @@ function retrieveFavs($cordovaSQLite) {
                     , list_name: res.rows.item(i).list_name
                     , song_list: res.rows.item(i).songs.split(',')
                     , song_count: res.rows.item(i).songs.split(',').length
-                });   
-                
-                 
+                });
+
+
             }
 
         } else {
@@ -57,12 +55,12 @@ function retrieveFavs($cordovaSQLite) {
 
         }
         console.log("Made Sql call to get favs");
-         
+
     }, function (err) {
         console.error("error=>" + err);
     });
-     
-     return favs;
+
+    return favs;
 }
 
 
@@ -126,7 +124,6 @@ function saveFav($cordovaSQLite, song) {
             });
 
 
-
             console.log("saveFav-79 Rows selected :" + favs.length);
 
         } else {
@@ -135,19 +132,19 @@ function saveFav($cordovaSQLite, song) {
     }, function (err) {
         console.error("error=>" + err);
     });
-    
+
 }
-    
-    
+
+
 function removeFav($cordovaSQLite, song) {
 
-  
-   /*updates the status  on fav_flg in the song table */
+
+    /*updates the status  on fav_flg in the song table */
     var query1 = "UPDATE songList SET fav_flg = 'false' where ID = ?";
     $cordovaSQLite.execute(db, query1, [song.id]).then(function (res) {}, function (err) {
         console.error(err);
     });
-        
+
     /*retrieves my_favs song list */
 
     favs = [];
@@ -166,8 +163,8 @@ function removeFav($cordovaSQLite, song) {
             fav = favs[0];
             var listparam;
             var index = fav.song_list.indexOf(song.id);
-            fav.song_list.splice(index,1);
-              console.log("removing Fav fro list" + res.rowsAffected);
+            fav.song_list.splice(index, 1);
+            console.log("removing Fav fro list" + res.rowsAffected);
             //removes first comma from fav song list
             if (fav.song_list.toString().charAt(0) == ',') {
                 // remove comma
@@ -198,5 +195,3 @@ function removeFav($cordovaSQLite, song) {
     });
 
 }
-
-

@@ -1,8 +1,14 @@
 /* Empty. Add your own CSS if you like */
-@import
-  "lib/ionic/scss/ionic.scss",
-  "lib/ionic-filter-bar/scss/ionic.filter.bar";
-   
+
+@import "lib/ionic/scss/ionic.scss",
+"lib/ionic-filter-bar/scss/ionic.filter.bar";
+ion-tabs.tabs-striped.tabs-color-active-positive .tab-item.tab-item-active,
+ion-tabs.tabs-striped.tabs-color-active-positive .tab-item.active,
+ion-tabs.tabs-striped.tabs-color-active-positive .tab-item.activated {
+    border-color: orange !important;
+    color: orange !important;
+}
+
 .cat-card {
     float: left;
     width: 45%;
@@ -12,81 +18,141 @@
     box-shadow: 2px 2px 14px grey;
 }
 
-.cat-card-image-holder{
-    width: 100%;    
+.cat-card-image-holder {
+    width: 100%;
 }
 
-.cat-container{
-	
-}
+.cat-container {}
 
-.cat-card-name{   
-    margin-right: 3px;   
+.cat-card-name {
+    margin-right: 3px;
     float: right;
     font-weight: bolder;
 }
 
-.cat-card-count{    
+.cat-card-count {
     margin-left: 51%;
     margin-right: 3px;
     margin-bottom: 2px;
     float: right;
 }
 
-.cat-card >.cat-card-image-holder > p > big> img{    
-     width: 100%; 
+.cat-card >.cat-card-image-holder > p > big> img {
+    width: 100%;
     height: 153px;
 }
 
-.song-detial-footer{   
-    margin-right: 2px;   
+.song-detial-footer {
+    margin-right: 2px;
     float: left;
     font-weight: bolder;
     width: 100%;
 }
 
-
-.song-title{
+.song-title {
     width: 85%;
     float: left;
 }
 
+
 /*-----------Icons CSS-----*/
+
 .fav-button >.ion-android-favorite-outline {
     font-size: 27px;
     float: right;
     height: 21px;
-  
 }
 
 .fav-button >.ion-android-favorite {
-     font-size: 27px;
+    font-size: 27px;
     float: right;
     color: crimson;
     height: 21px;
 }
 
-.fav-button{
-    background-color: white;  
+.fav-button {
+    background-color: white;
     border: none;
-    height: 21px; 
-    float: left;
-    margin-left: 9%;
+    height: 21px;
+    float: right;
 }
 
-
-
-.song-item-title{
+.song-item-title {
     width: 80%;
     padding: 0px !important;
-    float: left;    
+    float: left;
 }
 
-.song-item-fline{
+.song-item-fline {
     width: 88%;
     padding: 2px 0px 0px 15px !important;
 }
-.Song-detail,song-detial-footer{
+
+.Song-detail,
+song-detial-footer {
     /*--font-size: 32px;--*/
-    line-height: initial; !important;
+    line-height: initial;
+    !important;
+}
+
+.font-colour-pill {
+    margin-right: 10px;
+    -webkit-border-radius: 16px;
+    -moz-border-radius: 16px;
+    border-radius: 16px;
+    float: right;
+    width: 40%;
+}
+
+.font-colour-label {
+    width: 50%;
+    float: left;
+}
+
+.aboutus-text-box {
+    padding: 5px;
+    margin-top: 10px;
+    font-size: larger;
+    font-family: fantasy;
+}
+
+.platform-android .action-sheet-backdrop.active {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.platform-android .action-sheet {
+    margin: 0;
+}
+
+.platform-android .action-sheet .action-sheet-title,
+.platform-android .action-sheet .button {
+    text-align: left;
+    border-color: transparent;
+    font-size: 16px;
+    color: inherit;
+}
+
+.platform-android .action-sheet .action-sheet-title {
+    font-size: 14px;
+    padding: 16px;
+    color: #666;
+}
+
+.platform-android .action-sheet .button.active,
+.platform-android .action-sheet .button.activated {
+    background: #e8e8e8;
+}
+
+.platform-android .action-sheet-group {
+    margin: 0;
+    border-radius: 0;
+    background-color: #fafafa;
+}
+
+.platform-android .action-sheet-cancel {
+    display: none;
+}
+
+.platform-android .action-sheet-has-icons .button {
+    padding-left: 56px;
 }

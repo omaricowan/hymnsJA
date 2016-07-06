@@ -117,6 +117,7 @@ angular.module('starter.services', [])
         all: function (){
           setting = [];
           setting = retrieveSettings($cordovaSQLite);
+          return setting; 
         }
         ,get: function () {
             for (var i = 0; i < setting.length; i++) {             
