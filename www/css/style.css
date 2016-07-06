@@ -2,7 +2,12 @@
 @import
   "lib/ionic/scss/ionic.scss",
   "lib/ionic-filter-bar/scss/ionic.filter.bar";
-   
+  
+p {
+    
+    margin: 0px 0px 10px;
+
+}
 .cat-card {
     float: left;
     width: 45%;
@@ -89,4 +94,13 @@
 .Song-detail,song-detial-footer{
     /*--font-size: 32px;--*/
     line-height: initial; !important;
+}
+
+.Song-detail {
+    font-size: 20px;
+    word-spacing: 1px;
+    margin-left: 2%;
+    margin-right: 2%;
+    text-rendering: optimizeSpeed;
+    
 }
