@@ -6,7 +6,7 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 var db = null;
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngCordova', 'jett.ionic.filter.bar', 'ngLetterAvatar','ionic.ion.autoListDivider'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngCordova', 'jett.ionic.filter.bar', 'ngLetterAvatar', 'ionic.ion.autoListDivider', 'ionic-color-picker'])
 
 
 .run(function ($ionicPlatform, $cordovaSQLite) {
@@ -53,6 +53,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         url: '/tab'
         , abstract: true
         , templateUrl: 'templates/tabs.html'
+
     })
 
     // Each tab has its own nav history stack:
@@ -77,8 +78,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
             }
         }
     })
-    
-      .state('tab.fav-song-detail', {
+
+    .state('tab.fav-song-detail', {
         url: '/fav-songs-dets/:songId'
         , views: {
             'tab-favs': {

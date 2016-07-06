@@ -1,36 +1,42 @@
 <ion-view view-title="Categories">
-  <ion-content>
+    <ion-nav-buttons side="secondary">
+        <button class="button button-icon icon ion-ios-search-strong" ng-click="showFilterBar()">
+        </button>
+        <button class="button button-icon icon ion-android-more-vertical" ng-click="showMenu()">
+        </button>
+    </ion-nav-buttons>
+    <ion-content>
 
-	<div class="cat-container">
-		<div  ng-repeat="tag in tags">
-		   <div ng-if="$index%2==0" class="row">
-			  <div class="col">
-					 <div class="cat-card" >
-						<div class="cat-card-image-holder">	
-                            <p>
-                                <big>
+        <div class="cat-container">
+            <div ng-repeat="tag in tags">
+                <div ng-if="$index%2==0" class="row">
+                    <div class="col">
+                        <div class="cat-card">
+                            <div class="cat-card-image-holder">
+                                <p>
+                                    <big>
 							      <ng-letter-avatar class="categ-img" height= "153px"  fontSize="100" charCount= "1" data="{{tags[$index].tag_name}}"></ng-letter-avatar>
                                 </big>
-                            </p>
-                         </div>
-						<div class="cat-card-name">{{tags[$index].tag_name}}</div>
-                        <div class="cat-card-count">songs 10</div>
-					</div>
-					<div class="cat-card" >
-						<div class="cat-card-image-holder">	
-                             <p>
-                                 <big>
+                                </p>
+                            </div>
+                            <div class="cat-card-name">{{tags[$index].tag_name}}</div>
+                            <div class="cat-card-count">songs 10</div>
+                        </div>
+                        <div class="cat-card">
+                            <div class="cat-card-image-holder">
+                                <p>
+                                    <big>
                                      <ng-letter-avatar  class="categ-img" height= "153px"  fontSize="100" charCount= "1" data="{{tags[$index+1].tag_name}}"></ng-letter-avatar>
                                  </big>
-                            </p>
-                        </div>	
-						<div class="cat-card-name">{{tags[$index+1].tag_name}}</div>
-                        <div class="cat-card-count">songs 55</div>
-					</div>
-			  </div>
-		   </div>
-		</div>
-	</div>
-	
-  </ion-content>
+                                </p>
+                            </div>
+                            <div class="cat-card-name">{{tags[$index+1].tag_name}}</div>
+                            <div class="cat-card-count">songs 55</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </ion-content>
 </ion-view>
