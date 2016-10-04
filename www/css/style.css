@@ -1,7 +1,5 @@
 /* Empty. Add your own CSS if you like */
 
-@import "lib/ionic/scss/ionic.scss",
-"lib/ionic-filter-bar/scss/ionic.filter.bar";
 ion-tabs.tabs-striped.tabs-color-active-positive .tab-item.tab-item-active,
 ion-tabs.tabs-striped.tabs-color-active-positive .tab-item.active,
 ion-tabs.tabs-striped.tabs-color-active-positive .tab-item.activated {
@@ -9,6 +7,12 @@ ion-tabs.tabs-striped.tabs-color-active-positive .tab-item.activated {
     color: orange !important;
 }
 
+
+p {
+    
+    margin: 0px 0px 10px;
+
+}
 .cat-card {
     float: left;
     width: 45%;
@@ -155,4 +159,13 @@ song-detial-footer {
 
 .platform-android .action-sheet-has-icons .button {
     padding-left: 56px;
+}
+
+.Song-detail {
+    font-size: 20px;
+    word-spacing: 1px;
+    margin-left: 2%;
+    margin-right: 2%;
+    text-rendering: optimizeSpeed;
+    
 }
