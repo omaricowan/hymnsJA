@@ -11,28 +11,40 @@
             <div ng-repeat="tag in tags">
                 <div ng-if="$index%2==0" class="row">
                     <div class="col">
-                        <div class="cat-card">
-                            <div class="cat-card-image-holder">
-                                <p>
-                                    <big>
-							      <ng-letter-avatar class="categ-img" height= "153px"  fontSize="100" charCount= "1" data="{{tags[$index].tag_name}}"></ng-letter-avatar>
-                                </big>
-                                </p>
+                        <!-- column 1 -->
+                        <a ng-href="#/tab/categ/{{tags[$index].tag_id}}">
+                            <div class="cat-card" n>
+
+                                <div class="cat-card-image-holder">
+                                    <p>
+                                        <big>
+                                          <ng-letter-avatar class="categ-img" height= "153px"  fontSize="100" charCount= "1" data="{{tags[$index].tag_name}}"></ng-letter-avatar>
+                                        </big>
+                                    </p>
+                                </div>
+                                <div class="cat-card-name">{{tags[$index].tag_name}}</div>
+                                <div class="cat-card-count">songs 10</div>
+
                             </div>
-                            <div class="cat-card-name">{{tags[$index].tag_name}}</div>
-                            <div class="cat-card-count">songs 10</div>
-                        </div>
-                        <div class="cat-card">
-                            <div class="cat-card-image-holder">
-                                <p>
-                                    <big>
-                                     <ng-letter-avatar  class="categ-img" height= "153px"  fontSize="100" charCount= "1" data="{{tags[$index+1].tag_name}}"></ng-letter-avatar>
-                                 </big>
-                                </p>
+                        </a>
+
+                        <!-- column 2 -->
+                        <a ng-href="#/tab/categ/{{tags[$index+1].tag_id}}">
+                            <div class="cat-card">
+
+                                <div class="cat-card-image-holder">
+                                    <p>
+                                        <big>
+                                             <ng-letter-avatar  class="categ-img" height= "153px"  fontSize="100" charCount= "1" data="{{tags[$index+1].tag_name}}"></ng-letter-avatar>
+                                         </big>
+                                    </p>
+                                </div>
+                                <div class="cat-card-name">{{tags[$index+1].tag_name}}</div>
+                                <div class="cat-card-count">songs 55</div>
+
                             </div>
-                            <div class="cat-card-name">{{tags[$index+1].tag_name}}</div>
-                            <div class="cat-card-count">songs 55</div>
-                        </div>
+                        </a>
+
                     </div>
                 </div>
             </div>

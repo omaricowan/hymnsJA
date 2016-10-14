@@ -100,7 +100,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     })
 
     .state('tab.categ-detail', {
-        url: '/categ/:categId'
+        url: '/categ/:tag_id'
         , views: {
             'tab-categ': {
                 templateUrl: 'templates/categ-detail.html'

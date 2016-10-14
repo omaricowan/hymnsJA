@@ -123,6 +123,8 @@ angular.module('starter.controllers', [])
 
 
 
+
+
                 
                 , {
                     text: 'About'
@@ -195,10 +197,12 @@ angular.module('starter.controllers', [])
     $scope.tags = Tags.all();
 
 
+
 })
 
 .controller('CategDetailCtrl', function ($scope, $stateParams, Tags) {
-    $scope.tag = Tags.get($stateParams.tagId);
+    $scope.tag = Tags.get($stateParams.tag_id);
+    $scope.songs = Tags.get_songs($stateParams.tag_id);
 })
 
 

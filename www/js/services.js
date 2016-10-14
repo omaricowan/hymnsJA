@@ -14,10 +14,10 @@ angular.module('starter.services', [])
         , remove: function (fav) {
             favs.splice(favs.indexOf(fav), 1);
         }
-        , load: function () {            
+        , load: function () {
             return favs;
         }
-        , get: function (favId) { 
+        , get: function (favId) {
             for (var i = 0; i < favs.length; i++) {
                 if (favs[i].id === parseInt(favId)) {
                     console.log("Match Fav ID");
@@ -32,25 +32,9 @@ angular.module('starter.services', [])
 
 .factory('Tags', function ($cordovaSQLite, $parse) {
     // Might use a resource here that returns a JSON array
-
-    tags = [];
-    var query = "SELECT * FROM tags order by Tag_name";
-    $cordovaSQLite.execute(db, query, []).then(function (res) {
-        if (res.rows.length > 0) {
-            for (var i = 0; i < res.rows.length; i++) {
-
-                tags.push({
-                    id: res.rows.item(i).ID
-                    , tag_name: res.rows.item(i).Tag_name
-                });
-            }
-        } else {
-            console.log("No results found");
-        }
-    }, function (err) {
-        console.error("error=>" + err);
-    });
-
+    var tags = [];
+    tags = retrieveTags($cordovaSQLite);
+    var songs = [];
 
     return {
         all: function () {
@@ -67,6 +51,11 @@ angular.module('starter.services', [])
             }
             return null;
         }
+        , get_songs: function (tagId) {
+            songs = retrieveTagSongs($cordovaSQLite, tagId)
+            return songs;
+        }
+
     };
 })
 
@@ -87,14 +76,14 @@ angular.module('starter.services', [])
             console.log("Removing:" + song.id);
             //save flg and add song to fav list
             removeFav($cordovaSQLite, song);
- 
+
         }
         , addFavSong: function (song) {
 
             console.log("updating:" + song.id);
             //save flg and add song to fav list
             saveFav($cordovaSQLite, song);
- 
+
         }
         , remove: function (song) {
             songs.splice(songs.indexOf(song), 1);
@@ -114,19 +103,20 @@ angular.module('starter.services', [])
     // Might use a resource here that returns a JSON array
     var setting = [];
     return {
-        all: function (){
-          setting = [];
-          setting = retrieveSettings($cordovaSQLite);
-          return setting; 
+        all: function () {
+            setting = [];
+            setting = retrieveSettings($cordovaSQLite);
+            return setting;
         }
-        ,get: function () {
-            for (var i = 0; i < setting.length; i++) {             
-                    return setting[i]; 
+        , get: function () {
+            for (var i = 0; i < setting.length; i++) {
+                return setting[i];
             }
             return null;
-        },saveSettings: function(fontsizeVal){
-            
-            saveSettings($cordovaSQLite,fontsizeVal);
+        }
+        , saveSettings: function (fontsizeVal) {
+
+            saveSettings($cordovaSQLite, fontsizeVal);
         }
     };
 });

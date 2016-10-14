@@ -4,11 +4,34 @@
   The FriendsCtrl pulls data from the Friends service (service.js)
   The Friends service returns an array of friend data
 -->
-<ion-view view-title="{{chat.name}}">
-  <ion-content class="padding">
-    <img ng-src="{{chat.face}}" style="width: 64px; height: 64px">
-    <p>
-      {{chat.lastText}}
-    </p>
-  </ion-content>
+<ion-view view-title="{{tag.tag_name}}">
+    <ion-content>
+        <ion-refresher pulling-text="Pull to refresh..." on-refresh="refreshItems()">
+        </ion-refresher>
+        <ul class="list">
+            <ion-item auto-list-divider auto-list-divider-value="{{song.song_name}}" ng-repeat="song in songs">
+                <a class="song-item-title" ng-href="#/tab/songs/{{song.id}}">
+                    <h2 class="song-title">
+                    <i class="icon ion-music-note"></i>
+                    {{song.song_name}}					
+                </h2>
+                </a>
+
+                <!-- <button id="removeFav" ng-click="(song.fav_flg = 'true'); addFavSong(song);" class="fav-button" ng-show="song.fav_flg  !== 'true'">
+               <i  class="icon ion-android-favorite-outline" ></i>   
+            </button>
+          
+            <button id="addFav" ng-click="removeFavSong(song); (song.fav_flg = 'false'); " class="fav-button" ng-show="song.fav_flg == 'true'">
+               <i class="icon ion-android-favorite" ></i>    
+             </button>
+          -->
+                <a class="song-item-fline" ng-href="#/tab/songs/{{song.id}}" href="#/tab/songs/{{song.id}}">
+                    <p class="song-title">{{song.first_line}}</p>
+                </a>
+            </ion-item>
+        </ul>
+        <div ng-if="songs !== undefined && !songs.length" class="no-results">
+            <p>No Results</p>
+        </div>
+    </ion-content>
 </ion-view>
