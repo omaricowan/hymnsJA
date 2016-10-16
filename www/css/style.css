@@ -7,12 +7,10 @@ ion-tabs.tabs-striped.tabs-color-active-positive .tab-item.activated {
     color: orange !important;
 }
 
-
 p {
-    
-    margin: 0px 0px 10px;
-
+    margin: 0px 0px 0px !important;
 }
+
 .cat-card {
     float: left;
     width: 45%;
@@ -26,19 +24,29 @@ p {
     width: 100%;
 }
 
+cat-card-image-holder-p {
+    margin: 0 0 0px;
+}
+
 .cat-container {}
 
 .cat-card-name {
-    margin-right: 3px;
-    float: right;
+    margin-right: 1px;
+    margin-left: 2px;
+    float: left;
     font-weight: bolder;
+    color: dimgrey;
+    width: 100%;
 }
 
 .cat-card-count {
-    margin-left: 51%;
-    margin-right: 3px;
+    padding-left: 3px;
     margin-bottom: 2px;
-    float: right;
+    font-family: -webkit-pictograph;
+    font-size: small;
+    color: gray;
+    width: 100%;
+    float: left;
 }
 
 .cat-card >.cat-card-image-holder > p > big> img {
@@ -167,5 +175,4 @@ song-detial-footer {
     margin-left: 2%;
     margin-right: 2%;
     text-rendering: optimizeSpeed;
-    
 }

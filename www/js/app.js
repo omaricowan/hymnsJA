@@ -89,6 +89,18 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         }
     })
 
+
+
+    .state('tab.favs', {
+        url: '/favs'
+        , views: {
+            'tab-favs': {
+                templateUrl: 'templates/tab-favs.html'
+                , controller: 'FavSongCtrl'
+            }
+        }
+    })
+
     .state('tab.categ', {
         url: '/categ'
         , views: {
@@ -109,12 +121,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         }
     })
 
-    .state('tab.favs', {
-        url: '/favs'
+    .state('tab.song-categ-detail', {
+        url: '/categ-song/:songId'
         , views: {
-            'tab-favs': {
-                templateUrl: 'templates/tab-favs.html'
-                , controller: 'FavSongCtrl'
+            'tab-categ': {
+                templateUrl: 'templates/tag-song-detail.html'
+                , controller: 'SongDetailCtrl'
             }
         }
     })

@@ -1,16 +1,8 @@
-<!--
-  This template loads for the 'tab.friend-detail' state (app.js)
-  'friend' is a $scope variable created in the FriendsCtrl controller (controllers.js)
-  The FriendsCtrl pulls data from the Friends service (service.js)
-  The Friends service returns an array of friend data
--->
 <ion-view view-title="{{tag.tag_name}}">
     <ion-content>
-        <ion-refresher pulling-text="Pull to refresh..." on-refresh="refreshItems()">
-        </ion-refresher>
         <ul class="list">
-            <ion-item auto-list-divider auto-list-divider-value="{{song.song_name}}" ng-repeat="song in songs">
-                <a class="song-item-title" ng-href="#/tab/songs/{{song.id}}">
+            <ion-item ng-repeat="song in songs">
+                <a class="song-item-title" ng-href="#/tab/categ-song/{{song.id}}">
                     <h2 class="song-title">
                     <i class="icon ion-music-note"></i>
                     {{song.song_name}}					
@@ -25,13 +17,10 @@
                <i class="icon ion-android-favorite" ></i>    
              </button>
           -->
-                <a class="song-item-fline" ng-href="#/tab/songs/{{song.id}}" href="#/tab/songs/{{song.id}}">
+                <a class="song-item-fline" ng-href="#/tab/categ-song/{{song.id}}">
                     <p class="song-title">{{song.first_line}}</p>
                 </a>
             </ion-item>
         </ul>
-        <div ng-if="songs !== undefined && !songs.length" class="no-results">
-            <p>No Results</p>
-        </div>
     </ion-content>
 </ion-view>

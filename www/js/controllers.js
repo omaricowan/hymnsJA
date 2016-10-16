@@ -125,6 +125,14 @@ angular.module('starter.controllers', [])
 
 
 
+
+
+
+
+
+
+
+
                 
                 , {
                     text: 'About'
@@ -193,9 +201,150 @@ angular.module('starter.controllers', [])
     $scope.songFav = Songs.get($stateParams.songId);
 })
 
-.controller('CategCtrl', function ($scope, Tags) {
+.controller('CategCtrl', function ($scope, Tags, $ionicFilterBar, Settings, $ionicActionSheet, $ionicModal) {
     $scope.tags = Tags.all();
+    Settings.all();
+    //-----------------------------------Search bar implementation-----------------------------------//
+    var filterBarInstance;
 
+    $scope.showFilterBar = function () {
+        filterBarInstance = $ionicFilterBar.show({
+            items: $scope.tags
+            , update: function (filteredItems, filterText) {
+                $scope.tags = filteredItems;
+                console.log(filteredItems);
+                if (filterText) {
+                    console.log(filterText);
+                }
+            }
+        });
+    };
+
+    /////----------------------------------------------------- ***************************---------------------------------------------/////////   
+    /////--------------------------------------------------------Start to be modularized--------------------------------------------/////////
+    /////------------------------------------------------------ ***************************----------------------------------/////////
+    ////-----------------------------------------------------******************************-------------------------------------------////////   
+
+    //-----------------------------------About Us-----------------------------------//
+    //-----------------Create Modal---------
+    $ionicModal.fromTemplateUrl('./templates/aboutUS-modal.html', {
+        scope: $scope
+        , animation: 'slide-in-up'
+    }).then(function (modal) {
+        $scope.aboutModal = modal;
+        // ---------retrieve fontsize------ 
+        var settings = Settings.get();
+        $scope.fontsizeVal = settings.fontSize;
+
+    });
+
+    $scope.openAboutModal = function () {
+        $scope.aboutModal.show();
+    };
+
+    $scope.closeAboutModal = function (fontsizeVal) {
+        //saves fontSize value
+
+        $scope.aboutModal.hide();
+    };
+
+    //Cleanup the modal when we're done with it!
+    $scope.$on('$destroy', function () {
+
+        $scope.aboutModal.remove();
+    });
+
+    // Execute action on hide modal
+    $scope.$on('aboutModal.hidden', function () {
+        // Execute action
+    });
+
+    // Execute action on remove modal
+    $scope.$on('aboutModal.removed', function () {
+        // Execute action
+    });
+
+    //-----------------------------------Fnt Size Modal implementation-----------------------------------//
+
+
+    //-----------------Create Modal---------
+    $ionicModal.fromTemplateUrl('./templates/fontSize-modal.html', {
+        scope: $scope
+        , animation: 'slide-in-up'
+    }).then(function (modal) {
+        $scope.fontModal = modal;
+        // ---------retrieve fontsize------ 
+        var settings = Settings.get();
+        $scope.fontsizeVal = settings.fontSize;
+
+    });
+
+    $scope.openModal = function () {
+        $scope.fontModal.show();
+    };
+
+    $scope.closeModal = function (fontsizeVal) {
+        //saves fontSize value
+        Settings.saveSettings(fontsizeVal);
+        Settings.all();
+        $scope.fontModal.hide();
+    };
+
+    //Cleanup the modal when we're done with it!
+    $scope.$on('$destroy', function () {
+
+        $scope.fontModal.remove();
+    });
+
+    // Execute action on hide modal
+    $scope.$on('fontModal.hidden', function () {
+        // Execute action
+    });
+
+    // Execute action on remove modal
+    $scope.$on('fontModal.removed', function () {
+        // Execute action
+    });
+
+    //-----------------------------------Setting menu implementation-----------------------------------//
+    // Triggered on a button click, or some other target
+    $scope.showMenu = function () {
+
+        // Show the action sheet
+        var hideSheet = $ionicActionSheet.show({
+            buttons: [
+                {
+                    text: 'Change Song Font Size'
+                }
+
+
+
+
+
+
+                
+                , {
+                    text: 'About'
+                }
+     ]
+            , titleText: 'Settings'
+            , cancelText: 'Cancel'
+            , cancel: function () {
+                // add cancel code..
+            }
+            , buttonClicked: function (index) {
+                if (index == 0) {
+                    $scope.openModal();
+                }
+
+                if (index == 1) {
+
+                    $scope.openAboutModal();
+                }
+                return true;
+            }
+        });
+    };
 
 
 })

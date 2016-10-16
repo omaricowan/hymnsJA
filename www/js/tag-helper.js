@@ -53,3 +53,27 @@ function retrieveTagSongs($cordovaSQLite, tag_id) {
     console.log("getting songs from db done");
     return songs;
 }
+
+function retrieveTagCount($cordovaSQLite, tags) {
+
+    for (var i = 0; i < tags.length; i++) {
+        var query = "SELECT count(*) FROM songs_tags where tag_id = ?";
+        $cordovaSQLite.execute(db, query, []).then(function (res) {
+            if (res.rows.length > 0) {
+                for (var i = 0; i < res.rows.length; i++) {
+
+                    tags.push({
+                        tag_id: res.rows.item(i).ID
+                        , tag_name: res.rows.item(i).Tag_name
+                    });
+                }
+            } else {
+                console.log("No results found");
+            }
+        }, function (err) {
+            console.error("error=>" + err);
+        });
+    }
+
+    return tags;
+}
