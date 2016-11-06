@@ -1,5 +1,5 @@
 function retrieveTags($cordovaSQLite) {
-    tags = [];
+    var tags = [];
     var query = "SELECT * FROM tags order by Tag_name";
     $cordovaSQLite.execute(db, query, []).then(function (res) {
         if (res.rows.length > 0) {
@@ -8,6 +8,7 @@ function retrieveTags($cordovaSQLite) {
                 tags.push({
                     tag_id: res.rows.item(i).ID
                     , tag_name: res.rows.item(i).Tag_name
+                    , song_count: res.rows.item(i).Song_count
                 });
             }
         } else {

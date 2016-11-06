@@ -24,18 +24,18 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         }
     });
 
-    window.plugins.sqlDB.remove("sing.db", 2, function (error) {
-        console.error("db already removed: " + error);
+    // window.plugins.sqlDB.remove("sing.db", 2, function (error) {
+    //     console.error("db already removed: " + error);
 
-    });
+    // });
 
     //Loads existing database
-    window.plugins.sqlDB.copy("sing.db", function () {
-        db = $cordovaSQLite.openDB("sing.db");
-    }, function (error) {
-        console.error("db already copied: " + error);
-        db = $cordovaSQLite.openDB("sing.db");
-    });
+//    window.plugins.sqlDB.copy("sing.db", function () {
+               //        db = $cordovaSQLite.openDB("sing.db");
+               //    }, function (error) {
+               //        console.error("db already copied: " + error);
+               //        db = $cordovaSQLite.openDB("sing.db");
+               //    });
     db = $cordovaSQLite.openDB("sing.db");
 
 })
