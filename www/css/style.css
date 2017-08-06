@@ -11,6 +11,17 @@ p {
     margin: 0px 0px 0px !important;
 }
 
+.Song-detail > p {
+    padding-bottom: 18px !important;
+}
+
+.Song-title {
+    font-weight: bolder;
+    padding-bottom: 28px;
+    font-size: 150%;
+    color: rgb(212, 154, 62);
+}
+
 .cat-card {
     float: left;
     width: 45%;
@@ -62,7 +73,7 @@ cat-card-image-holder-p {
 }
 
 .song-title {
-    width: 85%;
+    width: 100%;
     float: left;
 }
 
@@ -90,7 +101,7 @@ cat-card-image-holder-p {
 }
 
 .song-item-title {
-    width: 80%;
+    width: 100%;
     padding: 0px !important;
     float: left;
 }
@@ -105,6 +116,10 @@ song-detial-footer {
     /*--font-size: 32px;--*/
     line-height: initial;
     !important;
+}
+
+.footer-details {
+    font-size: 15px;
 }
 
 .font-colour-pill {

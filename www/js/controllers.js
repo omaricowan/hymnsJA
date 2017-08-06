@@ -1,12 +1,34 @@
 angular.module('starter.controllers', [])
 
 
-.controller('SongsCtrl', function ($scope, Favs, Songs, Settings, $ionicActionSheet, $ionicModal, $ionicPopup, $ionicFilterBar) {
+.controller('SongsCtrl', function ($scope, Favs, Songs, Settings, $ionicActionSheet, $ionicModal, $ionicPopup, $ionicFilterBar, $ionicLoading) {
 
-    $scope.songs = Songs.all();
-    Settings.all();
-    Favs.load();
-    //
+    $scope.showLoading = function () {
+        $ionicLoading.show({
+            template: 'Loading...'
+        });
+    };
+
+    $scope.hideLoading = function () {
+        $ionicLoading.hide();
+    };
+
+
+
+
+    $scope.startup = function () {
+        $scope.showLoading();
+        $scope.songs = Songs.all();
+        Settings.all();
+        Favs.load();
+    };
+
+    $scope.startup();
+
+    $scope.hideLoading();
+
+
+
     //-----------------------------------Search bar implementation-----------------------------------//
     var filterBarInstance;
 
@@ -184,6 +206,8 @@ angular.module('starter.controllers', [])
         Songs.removeFavSong(song);
         Favs.reload();
     }
+
+
 
 })
 

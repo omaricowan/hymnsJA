@@ -1,15 +1,17 @@
 <ion-view view-title="{{song.song_name}}" hide-tabs='true'>
-    <ion-nav-buttons side="secondary">
-        <!-- <button class="button button-icon icon ion-android-favorite-outline" ng-click="showFilterBar()">
-        </button> -->
+    <!-- <ion-nav-buttons side="secondary">
+         <button class="button button-icon icon ion-android-favorite-outline" ng-click="showFilterBar()">
+        </button>
+       
         <button class="button button-icon icon ion-android-share-alt" ng-click="showFilterBar()">
         </button>
         <button class="button button-icon icon ion-edit" ng-click="showMenu()">
-        </button>
-    </ion-nav-buttons>
+        </button> 
+    </ion-nav-buttons>-->
     <ion-content class="padding">
+        <div class="Song-title">{{song.song_name}}</div>
         <div ng-bind-html="song.song_detail" class="Song-detail" ng-style="{'font-size': settings.fontSize }"></div>
-        <div ng-style="{'font-size': settings.fontSize }">
+        <div class="footer-details">
             <div ng-if="song.author" class="song-detial-footer">Author: {{song.author}} {{song.year}}</div>
             <div class="song-detial-footer">{{song.copyright}}</div>
         </div>

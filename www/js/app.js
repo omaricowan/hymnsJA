@@ -13,6 +13,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     $ionicPlatform.ready(function () {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
+
+
         if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
             cordova.plugins.Keyboard.disableScroll(true);
@@ -22,21 +24,28 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
             // org.apache.cordova.statusbar required
             StatusBar.styleDefault();
         }
+
+        //    window.plugins.sqlDB.remove("sing.db", 2, function (error) {
+        //        console.error("db already removed: " + error);
+        //
+        //    });
+
+        //Loads existing database
+        window.plugins.sqlDB.copy("sing.db", function () {
+            db = $cordovaSQLite.openDB("sing.db");
+        }, function (error) {
+            console.error("db already copied: " + error);
+            //    db = $cordovaSQLite.openDB("sing.db");
+        });
+        db = $cordovaSQLite.openDB("sing.db");
+
+
+        setTimeout(function () {
+            navigator.splashscreen.hide();
+        }, 10000);
     });
 
-    // window.plugins.sqlDB.remove("sing.db", 2, function (error) {
-    //     console.error("db already removed: " + error);
 
-    // });
-
-    //Loads existing database
-//    window.plugins.sqlDB.copy("sing.db", function () {
-               //        db = $cordovaSQLite.openDB("sing.db");
-               //    }, function (error) {
-               //        console.error("db already copied: " + error);
-               //        db = $cordovaSQLite.openDB("sing.db");
-               //    });
-    db = $cordovaSQLite.openDB("sing.db");
 
 })
 
