@@ -1,32 +1,54 @@
-<ion-view view-title="Categories">
-  <ion-content>
+<ion-view view-title="Categories" class="animated faster slideInRight">
+    <ion-nav-buttons side="secondary">
+        <button class="button button-icon icon ion-ios-search-strong" ng-click="showFilterBar()">
+        </button>
+        <button class="button button-icon icon ion-android-more-vertical" ng-click="showMenu()">
+        </button>
+    </ion-nav-buttons>
+    <ion-content on-swipe-right="goBack()" on-swipe-left="goForward()">
 
-	<div class="cat-container">
-		<div  ng-repeat="tag in tags">
-		   <div ng-if="$index%2==0" class="row">
-			  <div class="col">
-					 <div class="cat-card" >
-						<div>						 
-							<small>
-							   <ng-letter-avatar height= "153px" width="153px"  charCount= "6" data="{{tags[$index].tag_name}}"></ng-letter-avatar>
-							</small> 					
-						</div>
-						<div class="cat-card-name">{{tags[$index].tag_name}}</div>
-                        <div class="cat-card-count">songs 10</div>
-					</div>
-					<div class="cat-card" >
-						<div>					 
-							<small>
-							   <ng-letter-avatar  height= "153px" width="153px"  charCount= "6" data="{{tags[$index+1].tag_name}}"></ng-letter-avatar>
-							</small> 					
-                        </div>	
-						<div class="cat-card-name">{{tags[$index+1].tag_name}}</div>
-                        <div class="cat-card-count">songs 55</div>
-					</div>
-			  </div>
-		   </div>
-		</div>
-	</div>
-	
-  </ion-content>
+        <div class="cat-container ">
+            <div ng-repeat="tag in tags">
+                <div ng-if="$index%2==0" class="row">
+                    <div class="col">
+                        <!-- column 1 -->
+                        <a ng-href="#/tab/categ/{{tags[$index].tag_id}}">
+                            <div class="cat-card" n>
+
+                                <div class="cat-card-image-holder">
+                                    <p class="cat-card-image-holder-p">
+                                        <big>
+                                          <ng-letter-avatar class="categ-img" width="70" height= "170px"  fontSize="40" charCount= "1" avatarborder="true" data="{{tags[$index].tag_name}}"></ng-letter-avatar>
+                                        </big>
+                                    </p>
+                                </div>
+                                <div class="cat-card-name">{{tags[$index].tag_name}}</div>
+                                <div class="cat-card-count">Songs {{tags[$index].song_count}}</div>
+
+                            </div>
+                        </a>
+
+                        <!-- column 2 -->
+                        <a ng-href="#/tab/categ/{{tags[$index+1].tag_id}}">
+                            <div class="cat-card">
+
+                                <div class="cat-card-image-holder">
+                                    <p class="cat-card-image-holder-p">
+                                        <big>
+                                             <ng-letter-avatar  class="categ-img" width="70" height= "170px"  fontSize="40" charCount= "1" avatarborder="true" data="{{tags[$index+1].tag_name}}"></ng-letter-avatar>
+                                         </big>
+                                    </p>
+                                </div>
+                                <div class="cat-card-name">{{tags[$index+1].tag_name}}</div>
+                                <div class="cat-card-count">Songs {{tags[$index+1].song_count}}</div>
+
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </ion-content>
 </ion-view>

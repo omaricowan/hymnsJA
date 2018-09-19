@@ -1,0 +1,17 @@
+<ion-view  view-title="Favourites">
+  <ion-content>
+   <ion-list>
+			  <ion-item ng-repeat="fav in favs" ng-href="#/tab/fav-songs/{{fav.id}}" > 
+				<p style="float: left; margin-right: 10px;">						 
+					<small>
+					   <ng-letter-avatar data="{{fav.list_name}}"></ng-letter-avatar>
+					</small> 
+				</p>					
+				<h2>						
+					{{fav.list_name}}			  
+				</h2>
+				<p>songs {{fav.song_count}}</p>
+			  </ion-item>
+		</ion-list>
+  </ion-content>
+</ion-view>

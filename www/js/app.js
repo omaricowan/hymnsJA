@@ -32,17 +32,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
         //Loads existing database
         window.plugins.sqlDB.copy("sing.db", function () {
-            db = $cordovaSQLite.openDB("sing.db");
+            //
         }, function (error) {
             console.error("db already copied: " + error);
-            //    db = $cordovaSQLite.openDB("sing.db");
         });
-        db = $cordovaSQLite.openDB("sing.db");
 
 
-        setTimeout(function () {
-            navigator.splashscreen.hide();
-        }, 10000);
+
+
     });
 
 

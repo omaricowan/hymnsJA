@@ -2,7 +2,7 @@ function retrieveSongs($cordovaSQLite) {
     var songs = [];
     var query = "SELECT * FROM SongList";
     $cordovaSQLite.execute(db, query, []).then(function (res) {
-        console.log("getting songs from db");
+        console.log("retrieveSongs");
         if (res.rows.length > 0) {
             for (var i = 0; i < res.rows.length; i++) {
 
@@ -27,7 +27,7 @@ function retrieveSongs($cordovaSQLite) {
     }, function (err) {
         console.error("error=>" + err);
     });
-    console.log("getting songs from db done");
+    console.log("retrieveSongs" + songs);
     return songs;
 }
 
@@ -54,7 +54,6 @@ function retrieveFavs($cordovaSQLite) {
             console.log("No results found");
 
         }
-        console.log("Made Sql call to get favs");
 
     }, function (err) {
         console.error("error=>" + err);

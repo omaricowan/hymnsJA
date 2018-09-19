@@ -1,7 +1,8 @@
 angular.module('starter.controllers', [])
 
 
-.controller('SongsCtrl', function ($scope, Favs, Songs, Settings, $ionicActionSheet, $ionicModal, $ionicPopup, $ionicFilterBar, $ionicLoading) {
+.controller('SongsCtrl', function ($rootScope, $scope, Favs, Songs, Settings, localDatabaseService, $ionicActionSheet, $ionicModal, $ionicPopup, $ionicFilterBar, $ionicLoading, $ionicTabsDelegate) {
+
 
     $scope.showLoading = function () {
         $ionicLoading.show({
@@ -13,19 +14,26 @@ angular.module('starter.controllers', [])
         $ionicLoading.hide();
     };
 
-
-
-
     $scope.startup = function () {
-        $scope.showLoading();
+        $scope.settings = Settings.all();
         $scope.songs = Songs.all();
-        Settings.all();
-        Favs.load();
+        $rootScope.songs = $scope.songs;
+        $rootScope.settings = $scope.settings;
+        //var settings = Settings.get();
+
+
+
     };
 
-    $scope.startup();
+    //Favs.load();
 
-    $scope.hideLoading();
+
+
+    localDatabaseService.getDatabase().then(function () {
+        $scope.startup();
+        console.log("start-up");
+    })
+
 
 
 
@@ -44,6 +52,28 @@ angular.module('starter.controllers', [])
             }
         });
     };
+
+
+    /////----------------------------------------------------- ***************************---------------------------------------------/////////   
+    /////--------------------------------------------------------Start to be modularized--------------------------------------------/////////
+    /////------------------------------------------------------ ***************************----------------------------------/////////
+    ////-----------------------------------------------------******************************-------------------------------------------////////     
+
+    $scope.goForward = function () {
+        var selected = $ionicTabsDelegate.selectedIndex();
+        if (selected != -1) {
+            $ionicTabsDelegate.select(selected + 1);
+        }
+    }
+
+    $scope.goBack = function () {
+        var selected = $ionicTabsDelegate.selectedIndex();
+        if (selected != -1 && selected != 0) {
+            $ionicTabsDelegate.select(selected - 1);
+        }
+    }
+
+
     /////----------------------------------------------------- ***************************---------------------------------------------/////////   
     /////--------------------------------------------------------Start to be modularized--------------------------------------------/////////
     /////------------------------------------------------------ ***************************----------------------------------/////////
@@ -56,10 +86,6 @@ angular.module('starter.controllers', [])
         , animation: 'slide-in-up'
     }).then(function (modal) {
         $scope.aboutModal = modal;
-        // ---------retrieve fontsize------ 
-        var settings = Settings.get();
-        $scope.fontsizeVal = settings.fontSize;
-
     });
 
     $scope.openAboutModal = function () {
@@ -98,9 +124,6 @@ angular.module('starter.controllers', [])
     }).then(function (modal) {
         $scope.fontModal = modal;
         // ---------retrieve fontsize------ 
-        var settings = Settings.get();
-        $scope.fontsizeVal = settings.fontSize;
-
     });
 
     $scope.openModal = function () {
@@ -140,6 +163,33 @@ angular.module('starter.controllers', [])
                 {
                     text: 'Change Song Font Size'
                 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -195,37 +245,38 @@ angular.module('starter.controllers', [])
     ////-----------------------------------------------------******************************-------------------------------------------////////  
 
     //-----------------------------------Song list implementation-----------------------------------//
-    $scope.addFavSong = function (song) {
-        //saves fav flg and retrieves updates song list from db
-        Songs.addFavSong(song);
-        Favs.reload();
-    }
-
-    $scope.removeFavSong = function (song) {
-        //removes fav flg and retrieves updates song list from db
-        Songs.removeFavSong(song);
-        Favs.reload();
-    }
+    //    $scope.addFavSong = function (song) {
+    //        //saves fav flg and retrieves updates song list from db
+    //        Songs.addFavSong(song);
+    //        Favs.reload();
+    //    }
+    //
+    //    $scope.removeFavSong = function (song) {
+    //        //removes fav flg and retrieves updates song list from db
+    //        Songs.removeFavSong(song);
+    //        Favs.reload();
+    //    }
 
 
 
 })
 
-.controller('SongDetailCtrl', function ($scope, $stateParams, Songs, Settings) {
+.controller('SongDetailCtrl', function ($rootScope, $scope, $stateParams, Songs, Settings) {
     $scope.$on('$ionicView.beforeEnter', function () {
-        $scope.song = Songs.get($stateParams.songId);
-        Settings.all();
+
+        $scope.song = Songs.get($scope.songs, $stateParams.songId);
+
+
+
     });
-    var settings = Settings.get();
-    console.log('fontsize' + settings.fontSize);
-    $scope.settings = settings;
+
 })
 
-.controller('FavSongDetailCtrl', function ($scope, $stateParams, Songs) {
-    $scope.songFav = Songs.get($stateParams.songId);
-})
+//.controller('FavSongDetailCtrl', function ($scope, $stateParams, Songs) {
+//    $scope.songFav = Songs.get($stateParams.songId);
+//})
 
-.controller('CategCtrl', function ($scope, Tags, $ionicFilterBar, Settings, $ionicActionSheet, $ionicModal) {
+.controller('CategCtrl', function ($scope, Tags, $ionicFilterBar, Settings, $ionicActionSheet, $ionicModal, $ionicTabsDelegate) {
     $scope.tags = Tags.all();
     Settings.all();
     //-----------------------------------Search bar implementation-----------------------------------//
@@ -243,6 +294,25 @@ angular.module('starter.controllers', [])
             }
         });
     };
+
+    /////----------------------------------------------------- ***************************---------------------------------------------/////////   
+    /////--------------------------------------------------------Start to be modularized--------------------------------------------/////////
+    /////------------------------------------------------------ ***************************----------------------------------/////////
+    ////-----------------------------------------------------******************************-------------------------------------------////////     
+
+    $scope.goForward = function () {
+        var selected = $ionicTabsDelegate.selectedIndex();
+        if (selected != -1) {
+            $ionicTabsDelegate.select(selected + 1);
+        }
+    }
+
+    $scope.goBack = function () {
+        var selected = $ionicTabsDelegate.selectedIndex();
+        if (selected != -1 && selected != 0) {
+            $ionicTabsDelegate.select(selected - 1);
+        }
+    }
 
     /////----------------------------------------------------- ***************************---------------------------------------------/////////   
     /////--------------------------------------------------------Start to be modularized--------------------------------------------/////////
@@ -346,6 +416,40 @@ angular.module('starter.controllers', [])
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 
                 , {
                     text: 'About'
@@ -379,25 +483,25 @@ angular.module('starter.controllers', [])
 })
 
 
-.controller('FavSongCtrl', function ($scope, Favs, Songs) {
-    $scope.$on('$ionicView.beforeEnter', function () {
-
-        var favId = 1;
-        var favsongsList = Favs.get(favId).song_list;
-        var favsongs = [];
-        console.log("fav song flag" + favsongsList);
-        for (var i = 0; i < favsongsList.length; i++) {
-            favsongs.push(
-                Songs.get(favsongsList[i])
-            );
-            console.log("fav song flag" + Songs.get(favsongsList[i]).fav_flg);
-        }
-
-        $scope.favsongs = favsongs;
-    });
-
-
-})
+//.controller('FavSongCtrl', function ($scope, Favs, Songs) {
+//    $scope.$on('$ionicView.beforeEnter', function () {
+//
+//        var favId = 1;
+//        var favsongsList = Favs.get(favId).song_list;
+//        var favsongs = [];
+//        console.log("fav song flag" + favsongsList);
+//        for (var i = 0; i < favsongsList.length; i++) {
+//            favsongs.push(
+//                Songs.get(favsongsList[i])
+//            );
+//            console.log("fav song flag" + Songs.get(favsongsList[i]).fav_flg);
+//        }
+//
+//        $scope.favsongs = favsongs;
+//    });
+//
+//
+//})
 
 
 

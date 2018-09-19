@@ -1,0 +1,35 @@
+<ion-view view-title="Fav Songs">
+   <ion-nav-buttons side="secondary">
+			<button class="button button-icon icon ion-ios-search-strong" ng-click="showFilterBar()">
+			</button>
+  </ion-nav-buttons>
+  <ion-content>
+       <ion-refresher
+            pulling-text="Pull to refresh..."
+            on-refresh="refreshItems()">
+       </ion-refresher>
+	<ul class="list">
+      <ion-item ng-repeat="song in favsongs"> 
+            <a class="song-item-title" ng-href="#/tab/fav-songs-dets/{{song.id}}"> 
+               <h2 class="song-title">
+                    <i class="icon ion-music-note"></i>
+                    {{song.song_name}}					
+                </h2> 
+            </a>
+            <button  ng-click="(song.fav_flg = 'true'); addFavSong(song);" class="fav-button" ng-show="song.fav_flg  !== 'true'">
+               <i  class="icon ion-android-favorite-outline" ></i>   
+            </button>
+          
+            <button ng-click="(song.fav_flg = 'false'); " class="fav-button" ng-show="song.fav_flg == 'true'">
+               <i class="icon ion-android-favorite" ></i>    
+             </button>
+           <a class="song-item-fline" ng-href="#/tab/songs/{{song.id}}" href="#/tab/songs/{{song.id}}"> 
+               <p  class="song-title">{{song.first_line}}</p>	
+           </a>
+      </ion-item>
+	</ul>	
+	<div ng-if="songs !== undefined && !songs.length" class="no-results">
+		<p>No Results</p>
+	</div>
+  </ion-content>
+</ion-view>

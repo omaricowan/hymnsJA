@@ -1,132 +1,157 @@
 angular.module('starter.services', [])
 
-.factory('Favs', function($cordovaSQLite,$parse) {
-  // Might use a resource here that returns a JSON array
-	var favs;
-	var songlength =[];
-	favs = [];	
-		var query = "SELECT * FROM my_favs";		 
-		$cordovaSQLite.execute(db, query, []).then(function(res) {
-        if(res.rows.length > 0) {            
-             for (var i=0; i<res.rows.length; i++) {
 
-				  favs.push({   
-					id: res.rows.item(i).ID,
-                    list_name: res.rows.item(i).list_name,
-					song_list: res.rows.item(i).songs.split(','),
-					song_count:	res.rows.item(i).songs.split(',').length			
-                    });
-             }
-        } else {
-            console.log("No results found");
-        }
-    }, function (err) {
-        console.error("error=>"+err);
-    });
- 
+.factory('localDatabaseService', function ($ionicPlatform, $cordovaSQLite, $window) {
+    console.log('getDatabase', db);
+    // singleton
+    return {
+        getDatabase: function () {
+            // promise
+            return $ionicPlatform.ready(
+                    function () {
+                        // lazy init
+                        if (!db) {
+                            if ($window.cordova) {
 
-  return {
-    all: function() {
-      return favs;
-    },
-    remove: function(fav) {
-      favs.splice(favs.indexOf(fav), 1);
-    },
-    get: function(favId) {
-      for (var i = 0; i < favs.length; i++) {
-        if (favs[i].id === parseInt(favId)) {
-          return favs[i];
+                                // native
+                                db = $cordovaSQLite.openDB("sing.db");
+
+                                console.log('native db', db);
+                            }
+                        }
+                    })
+                .then(function () {
+                    // for chaining use
+                    return db;
+                });
         }
-      }
-      return null;
-    }
-  };
+    };
+})
+
+.factory('Favs', function ($cordovaSQLite, $parse) {
+    // Might use a resource here that returns a JSON array
+
+    var favs = [];
+    return {
+        reload: function () {
+            favs = retrieveFavs($cordovaSQLite);
+            return favs;
+        }
+        , remove: function (fav) {
+            favs.splice(favs.indexOf(fav), 1);
+        }
+        , load: function () {
+            favs = retrieveFavs($cordovaSQLite);
+            return favs;
+        }
+        , get: function (favId) {
+            favs = retrieveFavs($cordovaSQLite);
+            for (var i = 0; i < favs.length; i++) {
+                if (favs[i].id === parseInt(favId)) {
+                    console.log("Match Fav ID");
+                    return favs[i];
+                }
+            }
+            return null;
+        }
+    };
 })
 
 
-.factory('Tags', function($cordovaSQLite,$parse) {
-  // Might use a resource here that returns a JSON array
-	
-	tags = [];	
-		var query = "SELECT * FROM tags order by Tag_name";		 
-		$cordovaSQLite.execute(db, query, []).then(function(res) {
-        if(res.rows.length > 0) {          
-             for (var i=0; i<res.rows.length; i++) {
+.factory('Tags', function ($cordovaSQLite, $parse) {
+    // Might use a resource here that returns a JSON array
+    var tags = [];
+    //tags = retrieveTags($cordovaSQLite);
+    var songs = [];
 
-				  tags.push({   
-					id: res.rows.item(i).ID,
-                    tag_name: res.rows.item(i).Tag_name							
-                    });
-             }
-        } else {
-            console.log("No results found");
+    return {
+        all: function () {
+            tags = retrieveTags($cordovaSQLite);
+            return tags;
         }
-    }, function (err) {
-        console.error("error=>"+err);
-    });
- 
+        , remove: function (tag) {
+            tags.splice(tags.indexOf(tag), 1);
+        }
+        , get: function (tagId) {
+            for (var i = 0; i < tags.length; i++) {
+                if (tags[i].id === parseInt(tagId)) {
+                    return tags[i];
+                }
+            }
+            return null;
+        }
+        , get_songs: function (tagId) {
+            tags = retrieveTags($cordovaSQLite);
+            songs = retrieveTagSongs($cordovaSQLite, tagId)
+            return songs;
+        }
 
-  return {
-    all: function() {
-      return tags;
-    },
-    remove: function(tag) {
-      tags.splice(tags.indexOf(tag), 1);
-    },
-    get: function(tagId) {
-      for (var i = 0; i < tags.length; i++) {
-        if (tags[i].id === parseInt(tagId)) {
-          return tags[i];
-        }
-      }
-      return null;
-    }
-  };
+    };
 })
 
 
-.factory('Songs', function($cordovaSQLite) {
-  // Might use a resource here that returns a JSON array
-	var songs
-	songs = [];	
-		var query = "SELECT * FROM SongList";		 
-		$cordovaSQLite.execute(db, query, []).then(function(res) {
-        if(res.rows.length > 0) {           
-             for (var i=0; i<res.rows.length; i++) {
+.factory('Songs', function ($cordovaSQLite) {
+    // Might use a resource here that returns a JSON array
 
-				  songs.push({   
-					id: res.rows.item(i).ID,
-                    song_name: res.rows.item(i).SongTitle,
-					song_detail: res.rows.item(i).Lyrics,
-                    year: res.rows.item(i).Year,
-                    tags: res.rows.item(i).Tags,
-                    author: res.rows.item(i).Songwriter,
-                    copyright: res.rows.item(i).Copyright,
-					first_line:	res.rows.item(i).FirstLine 
-                    });
+    var songs = [];
+    //retrives all songs from db
+    //songs = retrieveSongs($cordovaSQLite);
 
-             }
-        } else {
-            console.log("No results found");
+    return {
+        all: function () {
+            songs = retrieveSongs($cordovaSQLite);
+            return songs;
         }
-    }, function (err) {
-        console.error("error=>"+err);
-    });
+        , removeFavSong: function (song) {
 
-  return {
-    all: function() {
-      return songs;
-    },
-    remove: function(song) {
-      songs.splice(songs.indexOf(song), 1);
-    },
-    get: function(songId) {
-      for (var i = 0; i < songs.length; i++) {
-        if (songs[i].id === parseInt(songId)) {
-          return songs[i];
+            console.log("Removing:" + song.id);
+            //save flg and add song to fav list
+            removeFav($cordovaSQLite, song);
+
         }
-      }
-      return null;
-    }
-  };
+        , addFavSong: function (song) {
+
+            console.log("updating:" + song.id);
+            //save flg and add song to fav list
+            saveFav($cordovaSQLite, song);
+
+        }
+        , remove: function (song) {
+            songs.splice(songs.indexOf(song), 1);
+        }
+        , get: function (songs, songId) {
+            for (var i = 0; i < songs.length; i++) {
+                if (songs[i].id === parseInt(songId)) {
+                    return songs[i];
+                }
+            }
+            return null;
+        }
+    };
+})
+
+.factory('Settings', function ($cordovaSQLite) {
+    // Might use a resource here that returns a JSON array
+    var setting = [];
+
+    return {
+        all: function () {
+            setting = retrieveSettings($cordovaSQLite);
+            console.log("setting all:" + setting);
+            return setting;
+        }
+        , get: function () {
+            setting = retrieveSettings($cordovaSQLite)
+            console.log("setting get:" + setting);
+            for (var i = 0; i < setting.length; i++) {
+                return setting[i];
+            }
+            return null;
+
+        }
+        , saveSettings: function (fontsizeVal) {
+
+            saveSettings($cordovaSQLite, fontsizeVal);
+        }
+    };
 });

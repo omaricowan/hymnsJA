@@ -27,6 +27,9 @@
         },
         "me.rahul.plugins.sqlDB": {
             "PACKAGE_NAME": "com.ionicframework.hymnsja279174"
+        },
+        "cordova-plugin-x-socialsharing": {
+            "PACKAGE_NAME": "com.ionicframework.hymnsja279174"
         }
     },
     "dependent_plugins": {}

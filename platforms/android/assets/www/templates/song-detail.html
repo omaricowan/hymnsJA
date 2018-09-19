@@ -1,16 +1,19 @@
-<!--
-  This template loads for the 'tab.friend-detail' state (app.js)
-  'friend' is a $scope variable created in the FriendsCtrl controller (controllers.js)
-  The FriendsCtrl pulls data from the Friends service (service.js)
-  The Friends service returns an array of friend data
--->
-<ion-view view-title="{{song.song_name}}">
-  <ion-content class="padding">  
-	  <div ng-bind-html="song.song_detail" class="Song-detail"></div>
-      <div>
-         <div class="song-detial-footer">Author: {{song.author}}</div>        
-         <div class="song-detial-footer">{{song.copyright}}</div> 
-         <div class="song-detial-footer">{{song.year}}</div> 
-      </div>
-  </ion-content>
+<ion-view view-title="{{song.song_name}}" hide-tabs='true'>
+    <!-- <ion-nav-buttons side="secondary">
+         <button class="button button-icon icon ion-android-favorite-outline" ng-click="showFilterBar()">
+        </button>
+       
+        <button class="button button-icon icon ion-android-share-alt" ng-click="showFilterBar()">
+        </button>
+        <button class="button button-icon icon ion-edit" ng-click="showMenu()">
+        </button> 
+    </ion-nav-buttons>-->
+    <ion-content class="padding">
+        <div class="Song-title">{{song.song_name}}</div>
+        <div ng-bind-html="song.song_detail" class="Song-detail" ng-style="{'font-size': settings.fontSize }"></div>
+        <div class="footer-details">
+            <div ng-if="song.author" class="song-detial-footer">Author: {{song.author}} {{song.year}}</div>
+            <div class="song-detial-footer">{{song.copyright}}</div>
+        </div>
+    </ion-content>
 </ion-view>

@@ -2,7 +2,7 @@ function retrieveSettings($cordovaSQLite) {
     var setting = [];
     var query = "SELECT * FROM setting";
     $cordovaSQLite.execute(db, query, []).then(function (res) {
-        console.log("getting setting from db 3 ");
+        console.log("retrieveSettings");
         if (res.rows.length > 0) {
             for (var i = 0; i < res.rows.length; i++) {
 
@@ -17,11 +17,11 @@ function retrieveSettings($cordovaSQLite) {
         } else {
             console.log("No results found");
         }
+        return setting;
     }, function (err) {
         console.error("error=>" + err);
     });
-    console.log("getting songs from db done");
-    return setting;
+
 }
 
 function saveSettings($cordovaSQLite, fontsizeVal) {

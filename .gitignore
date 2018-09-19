@@ -55,3 +55,4 @@ platforms/android/.gradle/2.2.1/taskArtifacts/cache.properties.lock
 *.lock
 platforms/android/.gradle/2.2.1/taskArtifacts/fileHashes.bin
 platforms/android/assets/www/css/style.css
+/www/old
